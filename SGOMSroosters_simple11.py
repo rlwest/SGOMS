@@ -3,7 +3,8 @@
 
 
 
-
+import sys
+sys.path.append('/Users/robertwest/CCMSuite')
 
 import ccm      
 log=ccm.log()
