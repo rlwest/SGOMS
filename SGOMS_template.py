@@ -1,6 +1,4 @@
-
- #################### SGOMS ###################
-
+#################### SGOMS ###################
 
 
 import sys
@@ -8,6 +6,7 @@ sys.path.append('/Users/robertwest/CCMSuite')
 
 import ccm      
 log=ccm.log()
+
 #log=ccm.log(html=True) 
 
 from ccm.lib.actr import *
@@ -243,14 +242,27 @@ class MyAgent(ACTR):
 
 
 
+########### create productions for choosing planning units #####################################
+#########################################################################
 
 
 
+        
 
+##this one fires when nothing has been done yet
+    def prep_wrap(b_context='finshed:nothing status:unoccupied'): # status:unoccupied triggers the selection of a planning unit
+         b_plan_unit.set('planning_unit:prep_wrap cuelag:none cue:start unit_task:veggies state:begin') # which planning unit and where to start
+         #b_unit_task.set('unit_task:veggies state:start') # ******** there is always a unit task that has just finished before another can start
+         b_context.set('finished:nothing status:occupied') # update context status to occupied
+         print 'prep the wrap planning unit is chosen'
+##this one fires on the condition that any other planning unit has been completed
+    def get_meat(b_context='finished:prep_wrap status:unoccupied'):
+         b_plan_unit.set('planning_unit:meat cuelag:none cue:start unit_task:check_meat state:running')
+         b_unit_task.set('unit_task:check_meat state:start')
+         b_context.set('finished:prep_wrap status:occupied')
+         print 'get the meat'
 
-
-
-
+         
 
 
 ############ add planning units to declarative memory and set context buffer ###############
@@ -258,16 +270,16 @@ class MyAgent(ACTR):
     
     def init():                                             
 
-        DM.add ('planning_unit:prep_wrap    cuelag:none          cue:start          unit_task:veggies      type:ordered')                     
-        DM.add ('planning_unit:prep_wrap    cuelag:start         cue:veggies        unit_task:cheese       type:ordered')
-        DM.add ('planning_unit:prep_wrap    cuelag:veggies       cue:cheese         unit_task:pickles      type:ordered')       
-        DM.add ('planning_unit:prep_wrap    cuelag:cheese        cue:pickles        unit_task:spreads      type:ordered')
-        DM.add ('planning_unit:prep_wrap    cuelag:pickles       cue:spreads        unit_task:sauce        type:ordered')
-        DM.add ('planning_unit:prep_wrap    cuelag:spreads       cue:sauce          unit_task:finished     type:ordered')
+        DM.add ('planning_unit:prep_wrap    cuelag:none          cue:start          unit_task:veggies')                     
+        DM.add ('planning_unit:prep_wrap    cuelag:start         cue:veggies        unit_task:cheese')
+        DM.add ('planning_unit:prep_wrap    cuelag:veggies       cue:cheese         unit_task:pickles')       
+        DM.add ('planning_unit:prep_wrap    cuelag:cheese        cue:pickles        unit_task:spreads')
+        DM.add ('planning_unit:prep_wrap    cuelag:pickles       cue:spreads        unit_task:sauce')
+        DM.add ('planning_unit:prep_wrap    cuelag:spreads       cue:sauce          unit_task:finished')
 
-        DM.add ('planning_unit:meat         cuelag:none          cue:start          unit_task:flip_meat    type:unordered')                     
-        DM.add ('planning_unit:meat         cuelag:none          cue:start          unit_task:add_meat     type:unordered')
-        DM.add ('planning_unit:meat         cuelag:none          cue:start          unit_task:finished     type:unordered')       
+        DM.add ('planning_unit:meat         cuelag:none          cue:start          unit_task:check_meat')                     
+        DM.add ('planning_unit:meat         cuelag:start         cue:check_meat     unit_task:add_meat')
+        DM.add ('planning_unit:meat         cuelag:check_meat    cue:add_meat       unit_task:finished')       
 
 
         b_context.set('finshed:nothing status:unoccupied')
@@ -275,97 +287,32 @@ class MyAgent(ACTR):
 
 
 
-
-
-
-
-
-
-
-
-
-
-########### create productions for choosing planning units #####################################
-#########################################################################
-
-##These productions fire when the agent has finished a planning unit
-##and is unoccupied. These examples are very simple, using single productions
-##to match to the context buffer. This type of decision would be very fast
-##and automatic
-
-        
-
-##this one fires when nothing has been done yet
-    def prep_wrap(b_context='finshed:nothing status:unoccupied'): # status:unoccupied triggers the selection of a planning unit
-         b_plan_unit.set('planning_unit:prep_wrap cuelag:none cue:start unit_task:veggies state:running') # which planning unit and where to start
-         b_unit_task.set('unit_task:veggies state:finished') # there is always a unit task that has just finished before another can start
-         b_context.set('finished:nothing status:occupied') # update context status to occupied
-         print 'prep the wrap'
-## making meat into an unordered planning unit
-    def meat(b_context='finished:prep_wrap status:unoccupied'):
-         b_plan_unit.set('planning_unit:meat  state:running')
-         b_unit_task.set('unit_task:check_meat state:finished')
-         b_context.set('finished:prep_wrap status:occupied')
-         print 'do the meat planning unit'
-
-         
-
-
-##need models of more complex thinking that would involve DM retrievals and logical
-##inference and heuristics and further checking and discussion. According to SGOMS
-##theory, the method for choosing the next planning unit will be task dependent and
-##may be a source of significant individual differences
-
-##need routines for dealing with planning units that have been interupted
-
-
-
-
-
-########## cycle for ordered unit task retrieval #############################################
+########## cycle for unit task retrieval #############################################
 #########################################################################
 
 ##This cycle is fixed for all SGOMS models. It is not task dependent
-   
+
+    def request_first_unit_task(b_plan_unit='planning_unit:?planning_unit cuelag:?cuelag cue:?cue unit_task:?unit_task state:begin'): 
+        b_unit_task.set('unit_task:?unit_task state:start')    
+        print 'begin with unit task = ',unit_task
 
     def request_next_unit_task(b_plan_unit='planning_unit:?planning_unit cuelag:?cuelag cue:?cue unit_task:?unit_task state:running',                   
-                               b_unit_task='unit_task:?unit_task state:finished'):
-        # plan_unit state:running means the planning unit has been set running
-        # unit_task unit_taks:?unit_task makes sure unit task matches the unit task in the planning unit buffer (may not be necessary)
-        # state:finished means the unit task is completed
-        DM.request('planning_unit:?planning_unit cue:?unit_task unit_task:? cuelag:?cue')
-        #request the next unit task using the previous one as the cue and the previous cue as the cue lag
-        b_plan_unit.set('planning_unit:?planning_unit cuelag:?cuelag cue:?cue unit_task:?unit_task state:retrieve')
-        # update the planning unit buffer and set status to retrieve    
+                               b_unit_task='unit_task:?unit_task state:finished'): 
+        DM.request('planning_unit:?planning_unit cue:?unit_task unit_task:? cuelag:?cue')                 
+        b_plan_unit.set('planning_unit:?planning_unit cuelag:?cuelag cue:?cue unit_task:?unit_task state:retrieve') # next unit task     
         print 'finished unit task = ',unit_task
         
-        
     def retrieve_next_unit_task(b_plan_unit='state:retrieve',
-                                b_DM='planning_unit:?planning_unit cuelag:?cuelag cue:?cue!finished unit_task:?unit_task'):
-        # retrieve next unit task in the planning unit
-        # update the planning unit buffer to state:running
-        # put the unit task in the unit task buffer with state:start
-
+                                b_DM='planning_unit:?planning_unit cuelag:?cuelag cue:?cue!finished unit_task:?unit_task'): 
         b_plan_unit.set('planning_unit:?planning_unit cuelag:?cuelag cue:?cue unit_task:?unit_task state:running')
         b_unit_task.set('unit_task:?unit_task state:start')
         print 'unit_task = ',unit_task
 
     def last_unit_task(b_plan_unit='planning_unit:?planning_unit',
-                       b_unit_task='unit_task:finished'):
-        # all planning units end with a unit task called finished
+                       b_unit_task='unit_task:finished state:start'):
+        print 'finished planning unit=',planning_unit
         b_unit_task.set('stop')
         b_context.set('finished:?planning_unit status:unoccupied')
-        print 'finished planning unit=',planning_unit
-        # this production updates the buffers and takes you out of the loop
-        # a new planning unit must be chosen
-
-
-
-
-
-
-
-
 
 
 
@@ -374,43 +321,13 @@ class MyAgent(ACTR):
 ######################################################################
         
 
-##the unit task models are expert system models for completing a distinct
-##island of work. Unit tasks are assumed to have been created during learning
-##and/or training and they represent islands of work that avoid overload, downtime
-##and interuptions. According to rational analysis we expect few or no individual
-##differences in unit tasks. In SGOMS, individual differences are assumed to occur
-##when switching planning units and possibly, sometimes, within planning units
-##an example of a difference within planning units would be the florida garbage men
-##essentially, this would occur if someone has worked out a better way of doing
-##the task but it has not been diseminated to other workers
 
-##Unit tasks are not tied to specific planning units, they can
-##be re-used. Likewise, methods in the motor module can be re-used
-##by productions in any unit task. However, currently, productions in
-##the procedural module cannot be re-used, that is, each unit task has
-##its own productions and they are not shared. If a set of actions is re-occuring
-##accross different unit tasks then the current view is that that set of actions
-##should be a seperate unit task so that re-use can occur through the planning unit
+## veggies unit task
 
-##the simplest type of unit task is just a chain of productions with no decision points.
-##In ACT-R these productions would be considered to be "complied." From ACT-R theory,
-##compilation only occurs if a set of actions is frequently repeated in the same order.
-##Also, the longer the sequence the harder it is to compile it so, in theory, we would
-##expect to see more shorter sequences and fewer longer sequences done in this way. SGOMS
-##has not yet been developed to the level of modeling the learning of a task so compiled
-##sequences are coded in by the programmer with the goal of creating them where the
-##theory suggests they should be
-
-
-
-## veggies unit task - this is a strictly ordered task
-
-# start the unit task
     def vegg_unit_task(b_unit_task='unit_task:veggies state:start'):
         print 'start the veggies unit task'
         b_unit_task.set('unit_task:veggies state:running')
-        b_method.set('method:add target:lettuce state:start')
-# do the unit task - in this case these productions call methods in a fixed order
+        b_method.set('method:add target:lettuce state:start')  
     def lettuce(b_unit_task='unit_task:veggies state:running',
                 b_method='method:add target:lettuce state:finished'):
         print 'lettuce method finished'
@@ -431,27 +348,17 @@ class MyAgent(ACTR):
                  b_method='method:add target:mushroom state:finished'):
         print 'mushroom method finished'
         b_unit_task.set('unit_task:veggies state:finished')   
-
-
         
-## cheese unit task - this is a unit task that randomly chooses a method
+## cheese unit task
 
-# start the unit task
     def cheese_unit_task(b_unit_task='unit_task:cheese state:start'):
         print 'start the cheese unit task'
         b_unit_task.set('unit_task:cheese state:running')
-        b_method.set('method:add target:feta state:start')
-# do the unit task - in this case a method is chosen randomly
-    def cheddercheese(b_unit_task='unit_task:cheese state:running',
-                      b_method='method:add target:feta state:finished'):
-        print 'chedder cheese method finished*************************************************'
+        b_method.set('method:add target:feta state:start')       
+    def cheese(b_unit_task='unit_task:cheese state:running',
+               b_method='method:add target:feta state:finished'):
+        print 'cheese method finished'
         b_unit_task.set('unit_task:cheese state:finished')
-    def fetacheese(b_unit_task='unit_task:cheese state:running',
-                   b_method='method:add target:feta state:finished'):
-        print 'feta cheese method finished **************************************************'
-        b_unit_task.set('unit_task:cheese state:finished')
-
-
 
 ## pickles unit task
 
@@ -472,7 +379,7 @@ class MyAgent(ACTR):
         print 'onion method finished'
         b_unit_task.set('unit_task:pickles state:finished')
 
-## spreads  unit task
+## spreads
 
     def humus_unit_task(b_unit_task='unit_task:spreads state:start'):
         print 'start the spreads unit task'
@@ -483,7 +390,7 @@ class MyAgent(ACTR):
         print "spreads finished"
         b_unit_task.set('unit_task:spreads state:finished')
 
-## sauce unit task
+## sauce
 
     def sauce_unit_task(b_unit_task='unit_task:sauce state:start'):
         print 'start the sauce unit task'
@@ -494,7 +401,7 @@ class MyAgent(ACTR):
         print "sauce finished"
         b_unit_task.set('unit_task:sauce state:finished')
         
-## check_meat unit task
+## check_meat
 
     def check_meat_unit_task(b_unit_task='unit_task:check_meat state:start'):
         print 'start the check_meat unit task'
@@ -505,7 +412,7 @@ class MyAgent(ACTR):
         print 'chicken is checked'
         b_unit_task.set('unit_task:check_meat state:finished')
 
-## add_meat unit task
+## add_meat
 
     def add_meat_unit_task(b_unit_task='unit_task:add_meat state:start'):
         print 'start the add_meat unit task'
