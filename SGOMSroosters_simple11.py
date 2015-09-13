@@ -265,9 +265,9 @@ class MyAgent(ACTR):
         DM.add ('planning_unit:prep_wrap    cuelag:pickles       cue:spreads        unit_task:sauce        type:ordered')
         DM.add ('planning_unit:prep_wrap    cuelag:spreads       cue:sauce          unit_task:finished     type:ordered')
 
-        DM.add ('planning_unit:meat         cuelag:none          cue:start          unit_task:check_meat   type:unordered')                     
-        DM.add ('planning_unit:meat         cuelag:start         cue:check_meat     unit_task:add_meat     type:unordered')
-        DM.add ('planning_unit:meat         cuelag:check_meat    cue:add_meat       unit_task:finished     type:unordered')       
+        DM.add ('planning_unit:meat         type:unordered')                     
+        #DM.add ('planning_unit:meat         cuelag:start         cue:check_meat     unit_task:add_meat     type:unordered')
+        #DM.add ('planninzg_unit:meat         cuelag:check_meat    cue:add_meat       unit_task:finished     type:unordered')       
 
 
         b_context.set('finshed:nothing status:unoccupied')
@@ -301,9 +301,9 @@ class MyAgent(ACTR):
          b_unit_task.set('unit_task:veggies state:finished') # there is always a unit task that has just finished before another can start
          b_context.set('finished:nothing status:occupied') # update context status to occupied
          print 'prep the wrap'
-##this one fires on the condition that any other planning unit has been completed
+## making meat into an unordered planning unit
     def get_meat(b_context='finished:prep_wrap status:unoccupied'):
-         b_plan_unit.set('planning_unit:meat cuelag:none cue:start unit_task:check_meat state:running')
+         b_plan_unit.set('planning_unit:meat  state:running')
          b_unit_task.set('unit_task:check_meat state:finished')
          b_context.set('finished:prep_wrap status:occupied')
          print 'get the meat'
@@ -331,7 +331,7 @@ class MyAgent(ACTR):
     def request_next_unit_task(b_plan_unit='planning_unit:?planning_unit cuelag:?cuelag cue:?cue unit_task:?unit_task state:running',                   
                                b_unit_task='unit_task:?unit_task state:finished'):
         # plan_unit state:running means the planning unit has been set running
-        # unit_task unit_taks:?unit_task makes sure unit task matches the unit task in the planning unit buffer
+        # unit_task unit_taks:?unit_task makes sure unit task matches the unit task in the planning unit buffer (may not be necessary)
         # state:finished means the unit task is completed
         DM.request('planning_unit:?planning_unit cue:?unit_task unit_task:? cuelag:?cue')
         #request the next unit task using the previous one as the cue and the previous cue as the cue lag
@@ -403,12 +403,14 @@ class MyAgent(ACTR):
 
 
 
-## veggies unit task
+## veggies unit task - this is a strictly ordered task
 
+# start the unit task
     def vegg_unit_task(b_unit_task='unit_task:veggies state:start'):
         print 'start the veggies unit task'
         b_unit_task.set('unit_task:veggies state:running')
-        b_method.set('method:add target:lettuce state:start')  
+        b_method.set('method:add target:lettuce state:start')
+# do the unit task - in this case these productions call methods in a fixed order
     def lettuce(b_unit_task='unit_task:veggies state:running',
                 b_method='method:add target:lettuce state:finished'):
         print 'lettuce method finished'
@@ -429,17 +431,27 @@ class MyAgent(ACTR):
                  b_method='method:add target:mushroom state:finished'):
         print 'mushroom method finished'
         b_unit_task.set('unit_task:veggies state:finished')   
-        
-## cheese unit task
 
+
+        
+## cheese unit task - this is a unit task that randomly chooses a method
+
+# start the unit task
     def cheese_unit_task(b_unit_task='unit_task:cheese state:start'):
         print 'start the cheese unit task'
         b_unit_task.set('unit_task:cheese state:running')
-        b_method.set('method:add target:feta state:start')       
-    def cheese(b_unit_task='unit_task:cheese state:running',
-               b_method='method:add target:feta state:finished'):
-        print 'cheese method finished'
+        b_method.set('method:add target:feta state:start')
+# do the unit task - in this case a method is chosen randomly
+    def cheddercheese(b_unit_task='unit_task:cheese state:running',
+                      b_method='method:add target:feta state:finished'):
+        print 'chedder cheese method finished*************************************************'
         b_unit_task.set('unit_task:cheese state:finished')
+    def fetacheese(b_unit_task='unit_task:cheese state:running',
+                   b_method='method:add target:feta state:finished'):
+        print 'feta cheese method finished **************************************************'
+        b_unit_task.set('unit_task:cheese state:finished')
+
+
 
 ## pickles unit task
 
