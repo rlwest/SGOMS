@@ -258,16 +258,16 @@ class MyAgent(ACTR):
     
     def init():                                             
 
-        DM.add ('planning_unit:prep_wrap    cuelag:none          cue:start          unit_task:veggies')                     
-        DM.add ('planning_unit:prep_wrap    cuelag:start         cue:veggies        unit_task:cheese')
-        DM.add ('planning_unit:prep_wrap    cuelag:veggies       cue:cheese         unit_task:pickles')       
-        DM.add ('planning_unit:prep_wrap    cuelag:cheese        cue:pickles        unit_task:spreads')
-        DM.add ('planning_unit:prep_wrap    cuelag:pickles       cue:spreads        unit_task:sauce')
-        DM.add ('planning_unit:prep_wrap    cuelag:spreads       cue:sauce          unit_task:finished')
+        DM.add ('planning_unit:prep_wrap    cuelag:none          cue:start          unit_task:veggies      type:ordered')                     
+        DM.add ('planning_unit:prep_wrap    cuelag:start         cue:veggies        unit_task:cheese       type:ordered')
+        DM.add ('planning_unit:prep_wrap    cuelag:veggies       cue:cheese         unit_task:pickles      type:ordered')       
+        DM.add ('planning_unit:prep_wrap    cuelag:cheese        cue:pickles        unit_task:spreads      type:ordered')
+        DM.add ('planning_unit:prep_wrap    cuelag:pickles       cue:spreads        unit_task:sauce        type:ordered')
+        DM.add ('planning_unit:prep_wrap    cuelag:spreads       cue:sauce          unit_task:finished     type:ordered')
 
-        DM.add ('planning_unit:meat         cuelag:none          cue:start          unit_task:check_meat')                     
-        DM.add ('planning_unit:meat         cuelag:start         cue:check_meat     unit_task:add_meat')
-        DM.add ('planning_unit:meat         cuelag:check_meat    cue:add_meat       unit_task:finished')       
+        DM.add ('planning_unit:meat         cuelag:none          cue:start          unit_task:check_meat   type:unordered')                     
+        DM.add ('planning_unit:meat         cuelag:start         cue:check_meat     unit_task:add_meat     type:unordered')
+        DM.add ('planning_unit:meat         cuelag:check_meat    cue:add_meat       unit_task:finished     type:unordered')       
 
 
         b_context.set('finshed:nothing status:unoccupied')
@@ -322,29 +322,42 @@ class MyAgent(ACTR):
 
 
 
-########## cycle for unit task retrieval #############################################
+########## cycle for ordered unit task retrieval #############################################
 #########################################################################
 
 ##This cycle is fixed for all SGOMS models. It is not task dependent
    
 
     def request_next_unit_task(b_plan_unit='planning_unit:?planning_unit cuelag:?cuelag cue:?cue unit_task:?unit_task state:running',                   
-                               b_unit_task='unit_task:?unit_task state:finished'): 
-        DM.request('planning_unit:?planning_unit cue:?unit_task unit_task:? cuelag:?cue')                 
-        b_plan_unit.set('planning_unit:?planning_unit cuelag:?cuelag cue:?cue unit_task:?unit_task state:retrieve') # next unit task     
+                               b_unit_task='unit_task:?unit_task state:finished'):
+        # plan_unit state:running means the planning unit has been set running
+        # unit_task unit_taks:?unit_task makes sure unit task matches the unit task in the planning unit buffer
+        # state:finished means the unit task is completed
+        DM.request('planning_unit:?planning_unit cue:?unit_task unit_task:? cuelag:?cue')
+        #request the next unit task using the previous one as the cue and the previous cue as the cue lag
+        b_plan_unit.set('planning_unit:?planning_unit cuelag:?cuelag cue:?cue unit_task:?unit_task state:retrieve')
+        # update the planning unit buffer and set status to retrieve    
         print 'finished unit task = ',unit_task
         
+        
     def retrieve_next_unit_task(b_plan_unit='state:retrieve',
-                                b_DM='planning_unit:?planning_unit cuelag:?cuelag cue:?cue!finished unit_task:?unit_task'): 
+                                b_DM='planning_unit:?planning_unit cuelag:?cuelag cue:?cue!finished unit_task:?unit_task'):
+        # retrieve next unit task in the planning unit
+        # update the planning unit buffer to state:running
+        # put the unit task in the unit task buffer with state:start
+
         b_plan_unit.set('planning_unit:?planning_unit cuelag:?cuelag cue:?cue unit_task:?unit_task state:running')
         b_unit_task.set('unit_task:?unit_task state:start')
         print 'unit_task = ',unit_task
 
     def last_unit_task(b_plan_unit='planning_unit:?planning_unit',
-                       b_unit_task='unit_task:finished state:start'):
-        print 'finished planning unit=',planning_unit
+                       b_unit_task='unit_task:finished'):
+        # all planning units end with a unit task called finished
         b_unit_task.set('stop')
         b_context.set('finished:?planning_unit status:unoccupied')
+        print 'finished planning unit=',planning_unit
+        # this production updates the buffers and takes you out of the loop
+        # a new planning unit must be chosen
 
 
 
