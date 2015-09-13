@@ -293,7 +293,9 @@ class MyAgent(ACTR):
 ##This cycle is fixed for all SGOMS models. It is not task dependent
 
     def request_first_unit_task(b_plan_unit='planning_unit:?planning_unit cuelag:?cuelag cue:?cue unit_task:?unit_task state:begin'): 
-        b_unit_task.set('unit_task:?unit_task state:start')    
+        b_unit_task.set('unit_task:?unit_task state:start')
+        b_plan_unit.set('planning_unit:?planning_unit cuelag:?cuelag cue:?cue unit_task:?unit_task state:running') # next unit task     
+
         print 'begin with unit task = ',unit_task
 
     def request_next_unit_task(b_plan_unit='planning_unit:?planning_unit cuelag:?cuelag cue:?cue unit_task:?unit_task state:running',                   
@@ -327,11 +329,11 @@ class MyAgent(ACTR):
     def vegg_unit_task(b_unit_task='unit_task:veggies state:start'):
         print 'start the veggies unit task'
         b_unit_task.set('unit_task:veggies state:running')
-        b_method.set('method:add target:lettuce state:start')  
+        b_method.set('method:add target:lettuce state:finished')  
     def lettuce(b_unit_task='unit_task:veggies state:running',
                 b_method='method:add target:lettuce state:finished'):
         print 'lettuce method finished'
-        b_method.set('method:add target:tomato state:start')        
+        b_method.set('method:add target:lettuce state:start')        
     def tomato(b_unit_task='unit_task:veggies state:running',
                b_method='method:add target:tomato state:finished'):
         print 'tomato method finished'
