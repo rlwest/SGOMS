@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="1"
+   name=""
+   committed-date="2009-09-12T07:31:16.004624Z"
+   url="svn://ccmsuite.ccmlab.ca/ccmsuite/ccm/tests"
+   kind="dir"
+   uuid="4b6b830f-6793-4e15-8b12-0a2108279114"
+   repos="svn://ccmsuite.ccmlab.ca/ccmsuite"
+   revision="7"/>
+<entry
+   committed-rev="1"
+   name="test_actr_salience.py"
+   text-time="2009-09-15T19:23:41.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="cc25d7b1901e839b803d9763ee644078"
+   kind="file"
+   prop-time="2009-09-15T19:23:39.000000Z"/>
+<entry
+   committed-rev="1"
+   name="test_patterns.py"
+   text-time="2009-09-15T19:23:41.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="08597d7115de7ee9016f0a4e82002ca3"
+   kind="file"
+   prop-time="2009-09-15T19:23:40.000000Z"/>
+<entry
+   committed-rev="1"
+   name="__init__.py"
+   text-time="2009-09-15T19:23:41.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="d41d8cd98f00b204e9800998ecf8427e"
+   kind="file"
+   prop-time="2009-09-15T19:23:40.000000Z"/>
+<entry
+   committed-rev="1"
+   name="test_nef_highdim.py"
+   text-time="2009-09-15T19:23:41.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="4f4b7a961d3532de44e573b5ebe50d2a"
+   kind="file"
+   prop-time="2009-09-15T19:23:40.000000Z"/>
+<entry
+   committed-rev="1"
+   name="test_actr_compile.py"
+   text-time="2009-09-15T19:23:41.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="dd187ae89c608edd5b2a6d02dbd1d24d"
+   kind="file"
+   prop-time="2009-09-15T19:23:40.000000Z"/>
+<entry
+   committed-rev="1"
+   name="test_nef.py"
+   text-time="2009-09-15T19:23:41.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="80f2808a7f33c10f80e0f7d09c3f0f38"
+   kind="file"
+   prop-time="2009-09-15T19:23:40.000000Z"/>
+<entry
+   committed-rev="1"
+   name="test_productions.py"
+   text-time="2009-09-15T19:23:41.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="fcec426fec143dc473a4dd86b781caf6"
+   kind="file"
+   prop-time="2009-09-15T19:23:40.000000Z"/>
+<entry
+   committed-rev="1"
+   name="test_nef_connect.py"
+   text-time="2009-09-15T19:23:41.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="836834e6472b52f40d762fa39e8b2fc1"
+   kind="file"
+   prop-time="2009-09-15T19:23:40.000000Z"/>
+<entry
+   committed-rev="1"
+   name="test_actr_memory.py"
+   text-time="2009-09-15T19:23:41.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="1d390808fd8ee7e0bf7cfff07f8059fa"
+   kind="file"
+   prop-time="2009-09-15T19:23:40.000000Z"/>
+<entry
+   committed-rev="1"
+   name="test_nef_generate.py"
+   text-time="2009-09-15T19:23:41.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="0b769f26b695e2401ad8bcd0cc1791c5"
+   kind="file"
+   prop-time="2009-09-15T19:23:41.000000Z"/>
+<entry
+   committed-rev="1"
+   name="test_actr_productions.py"
+   text-time="2009-09-15T19:23:41.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="4ee32b50f7c0341ac6d1d116abec6f19"
+   kind="file"
+   prop-time="2009-09-15T19:23:41.000000Z"/>
+<entry
+   committed-rev="1"
+   name="test_actr_buffer.py"
+   text-time="2009-09-15T19:23:41.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="d3659965e2b36cbcdaec6c8e13039a99"
+   kind="file"
+   prop-time="2009-09-15T19:23:40.000000Z"/>
+<entry
+   committed-rev="1"
+   name="test_nef_spikes_integrator.py"
+   text-time="2009-09-15T19:23:41.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="91a9a54273aa18f81b7af29ad402c78d"
+   kind="file"
+   prop-time="2009-09-15T19:23:41.000000Z"/>
+<entry
+   committed-rev="1"
+   name="test_nef_activity.py"
+   text-time="2009-09-15T19:23:41.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="f170443e0f6ed2e5fa222e2b7e3cffe9"
+   kind="file"
+   prop-time="2009-09-15T19:23:41.000000Z"/>
+<entry
+   committed-rev="1"
+   name="test_nested_models.py"
+   text-time="2009-09-15T19:23:41.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="220427684b83b555a9a57b7408766440"
+   kind="file"
+   prop-time="2009-09-15T19:23:41.000000Z"/>
+<entry
+   committed-rev="1"
+   name="test_nef_spikes.py"
+   text-time="2009-09-15T19:23:41.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="761e33d18f1a2b19592ca74f0e13a159"
+   kind="file"
+   prop-time="2009-09-15T19:23:41.000000Z"/>
+</wc-entries>

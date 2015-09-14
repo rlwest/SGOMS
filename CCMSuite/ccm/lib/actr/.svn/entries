@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="1"
+   name=""
+   committed-date="2009-09-12T07:31:16.004624Z"
+   url="svn://ccmsuite.ccmlab.ca/ccmsuite/ccm/lib/actr"
+   kind="dir"
+   uuid="4b6b830f-6793-4e15-8b12-0a2108279114"
+   repos="svn://ccmsuite.ccmlab.ca/ccmsuite"
+   revision="7"/>
+<entry
+   committed-rev="1"
+   name="compile.py"
+   text-time="2009-09-15T19:23:49.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="ff8755050bc0018bc3ba627a242254cf"
+   kind="file"
+   prop-time="2009-09-15T19:23:49.000000Z"/>
+<entry
+   committed-rev="1"
+   name="core.py"
+   text-time="2009-09-15T19:23:49.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="9b9ffa33b147bd9e119d692e8ef7f416"
+   kind="file"
+   prop-time="2009-09-15T19:23:49.000000Z"/>
+<entry
+   committed-rev="1"
+   name="buffer.py"
+   text-time="2009-09-15T19:23:49.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="3deb7d5bfa65e8d809187ba7ced0b3e5"
+   kind="file"
+   prop-time="2009-09-15T19:23:49.000000Z"/>
+<entry
+   committed-rev="1"
+   name="pm.py"
+   text-time="2009-09-15T19:23:49.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="91f10bcd4e0a47b7a2aadb998e2e0ef0"
+   kind="file"
+   prop-time="2009-09-15T19:23:49.000000Z"/>
+<entry
+   committed-rev="1"
+   name="sosvision.py"
+   text-time="2009-09-15T19:23:49.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="9422eba4a5b8c31645b395ddc57fbd98"
+   kind="file"
+   prop-time="2009-09-15T19:23:49.000000Z"/>
+<entry
+   committed-rev="1"
+   name="__init__.py"
+   text-time="2009-09-15T19:23:49.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="d60639585e104992176ad38a98040ee0"
+   kind="file"
+   prop-time="2009-09-15T19:23:49.000000Z"/>
+<entry
+   committed-rev="1"
+   name="dm.py"
+   text-time="2009-09-15T19:23:49.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="ad2e0c90d6c70492f5e314e661f51fed"
+   kind="file"
+   prop-time="2009-09-15T19:23:49.000000Z"/>
+<entry
+   committed-rev="1"
+   name="motor.py"
+   text-time="2009-09-15T19:23:49.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="e87a17cbf818021ade760b30613a184a"
+   kind="file"
+   prop-time="2009-09-15T19:23:49.000000Z"/>
+<entry
+   committed-rev="1"
+   name="timer.py"
+   text-time="2009-09-15T19:23:49.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="ecf1064d7b87e8c2dc6a09617cb3a18b"
+   kind="file"
+   prop-time="2009-09-15T19:23:49.000000Z"/>
+<entry
+   committed-rev="1"
+   name="imaginal.py"
+   text-time="2009-09-15T19:23:49.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="d87f69689828ee2a4d41f92d313e01ac"
+   kind="file"
+   prop-time="2009-09-15T19:23:49.000000Z"/>
+<entry
+   committed-rev="1"
+   name="text.py"
+   text-time="2009-09-15T19:23:49.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="aaff8e4c2eb22c81701f6287562c194a"
+   kind="file"
+   prop-time="2009-09-15T19:23:49.000000Z"/>
+<entry
+   committed-rev="1"
+   name="vision.py"
+   text-time="2009-09-15T19:23:49.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="684afe4eb58c7b024430b57486e5bff3"
+   kind="file"
+   prop-time="2009-09-15T19:23:49.000000Z"/>
+</wc-entries>

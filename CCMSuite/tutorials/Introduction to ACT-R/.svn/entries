@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="7"
+   name=""
+   committed-date="2009-09-14T20:06:27.710071Z"
+   url="svn://ccmsuite.ccmlab.ca/ccmsuite/tutorials/Introduction%20to%20ACT-R"
+   last-author="terry"
+   kind="dir"
+   uuid="4b6b830f-6793-4e15-8b12-0a2108279114"
+   repos="svn://ccmsuite.ccmlab.ca/ccmsuite"
+   revision="7"/>
+<entry
+   committed-rev="6"
+   name="dm_addition.py"
+   text-time="2009-09-15T19:23:53.000000Z"
+   committed-date="2009-09-14T20:01:22.927278Z"
+   checksum="6ee6f8baa4b7df5f784358374a54184d"
+   last-author="terry"
+   kind="file"
+   prop-time="2009-09-15T19:23:51.000000Z"/>
+<entry
+   committed-rev="6"
+   name="vision_paired.py"
+   text-time="2009-09-15T19:23:53.000000Z"
+   committed-date="2009-09-14T20:01:22.927278Z"
+   checksum="e1fd4a2ffe338ccc15d35831c8433def"
+   last-author="terry"
+   kind="file"
+   prop-time="2009-09-15T19:23:51.000000Z"/>
+<entry
+   committed-rev="6"
+   name="pm_1.py"
+   text-time="2009-09-15T19:23:53.000000Z"
+   committed-date="2009-09-14T20:01:22.927278Z"
+   checksum="3e0c66fd72247cd64a428b02df659776"
+   last-author="terry"
+   kind="file"
+   prop-time="2009-09-15T19:23:51.000000Z"/>
+<entry
+   committed-rev="6"
+   name="pm_2.py"
+   text-time="2009-09-15T19:23:53.000000Z"
+   committed-date="2009-09-14T20:01:22.927278Z"
+   checksum="6e623474352cb99a1f9dcbccd4909333"
+   last-author="terry"
+   kind="file"
+   prop-time="2009-09-15T19:23:51.000000Z"/>
+<entry
+   committed-rev="6"
+   name="pm_3.py"
+   text-time="2009-09-15T19:23:53.000000Z"
+   committed-date="2009-09-14T20:01:22.927278Z"
+   checksum="752732adde18f4c75383e628dac0f5ca"
+   last-author="terry"
+   kind="file"
+   prop-time="2009-09-15T19:23:51.000000Z"/>
+<entry
+   committed-rev="6"
+   name="pm_4.py"
+   text-time="2009-09-15T19:23:53.000000Z"
+   committed-date="2009-09-14T20:01:22.927278Z"
+   checksum="c2747a8168488be1b2c41c2c6edef20e"
+   last-author="terry"
+   kind="file"
+   prop-time="2009-09-15T19:23:51.000000Z"/>
+<entry
+   committed-rev="6"
+   name="pm_5.py"
+   text-time="2009-09-15T19:23:53.000000Z"
+   committed-date="2009-09-14T20:01:22.927278Z"
+   checksum="43335b8339fd279e3ae26e3ccbbb0d18"
+   last-author="terry"
+   kind="file"
+   prop-time="2009-09-15T19:23:51.000000Z"/>
+<entry
+   committed-rev="6"
+   name="dm_fan.py"
+   text-time="2009-09-15T19:23:53.000000Z"
+   committed-date="2009-09-14T20:01:22.927278Z"
+   checksum="3c86148bbfde11c239e0b4a028ef1b12"
+   last-author="terry"
+   kind="file"
+   prop-time="2009-09-15T19:23:51.000000Z"/>
+<entry
+   committed-rev="6"
+   name="dm_rps.py"
+   text-time="2009-09-15T19:23:53.000000Z"
+   committed-date="2009-09-14T20:01:22.927278Z"
+   checksum="62ed365730819200cc71a5a1bdec76ba"
+   last-author="terry"
+   kind="file"
+   prop-time="2009-09-15T19:23:51.000000Z"/>
+<entry
+   name="Introduction to ACT-R_files"
+   kind="dir"/>
+<entry
+   committed-rev="6"
+   name="dm_rbc.py"
+   text-time="2009-09-15T19:23:53.000000Z"
+   committed-date="2009-09-14T20:01:22.927278Z"
+   checksum="517909b444ffb1f4d95e84f22a480ef7"
+   last-author="terry"
+   kind="file"
+   prop-time="2009-09-15T19:23:53.000000Z"/>
+<entry
+   committed-rev="7"
+   name="Introduction to ACT-R.html"
+   text-time="2009-09-15T19:23:53.000000Z"
+   committed-date="2009-09-14T20:06:27.710071Z"
+   checksum="4646667ef3ca4db519b90c4aa3778ca0"
+   last-author="terry"
+   kind="file"
+   prop-time="2009-09-15T19:23:53.000000Z"/>
+</wc-entries>

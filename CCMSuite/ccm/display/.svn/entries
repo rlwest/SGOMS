@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="3"
+   name=""
+   committed-date="2009-09-12T08:06:36.355030Z"
+   url="svn://ccmsuite.ccmlab.ca/ccmsuite/ccm/display"
+   last-author="terry"
+   kind="dir"
+   uuid="4b6b830f-6793-4e15-8b12-0a2108279114"
+   repos="svn://ccmsuite.ccmlab.ca/ccmsuite"
+   revision="7"/>
+<entry
+   name="pygame"
+   kind="dir"/>
+<entry
+   committed-rev="3"
+   name="__init__.py"
+   text-time="2009-09-15T19:23:45.000000Z"
+   committed-date="2009-09-12T08:06:36.355030Z"
+   checksum="3e8b54d4cac9453be5b5be0c6c7437db"
+   last-author="terry"
+   kind="file"
+   prop-time="2009-09-15T19:23:45.000000Z"/>
+<entry
+   name="cairo"
+   kind="dir"/>
+<entry
+   name="tk"
+   kind="dir"/>
+</wc-entries>

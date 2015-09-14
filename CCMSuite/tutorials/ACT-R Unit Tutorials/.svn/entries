@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="5"
+   name=""
+   committed-date="2009-09-14T20:00:58.494717Z"
+   url="svn://ccmsuite.ccmlab.ca/ccmsuite/tutorials/ACT-R%20Unit%20Tutorials"
+   last-author="terry"
+   kind="dir"
+   uuid="4b6b830f-6793-4e15-8b12-0a2108279114"
+   repos="svn://ccmsuite.ccmlab.ca/ccmsuite"
+   revision="7"/>
+<entry
+   committed-rev="1"
+   name="u1_semantic.py"
+   text-time="2009-09-15T19:23:53.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="bbcbb46ad2ff459de36cad3bb6728ab9"
+   kind="file"
+   prop-time="2009-09-15T19:23:53.000000Z"/>
+<entry
+   committed-rev="5"
+   name="u4_paired.py"
+   text-time="2009-09-15T19:23:53.000000Z"
+   committed-date="2009-09-14T20:00:58.494717Z"
+   checksum="e1fd4a2ffe338ccc15d35831c8433def"
+   last-author="terry"
+   kind="file"
+   prop-time="2009-09-15T19:23:53.000000Z"/>
+<entry
+   committed-rev="1"
+   name="u1_count.py"
+   text-time="2009-09-15T19:23:53.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="39e28be63b75afddec90be0861afc86d"
+   kind="file"
+   prop-time="2009-09-15T19:23:53.000000Z"/>
+<entry
+   committed-rev="1"
+   name="u5_fan.py"
+   text-time="2009-09-15T19:23:53.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="06f23fac62b9e62f1aaea1f429fba6c7"
+   kind="file"
+   prop-time="2009-09-15T19:23:53.000000Z"/>
+<entry
+   committed-rev="1"
+   name="u5_grouped.py"
+   text-time="2009-09-15T19:23:53.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="ec582f91cb4ceb8ea83c252d2143b375"
+   kind="file"
+   prop-time="2009-09-15T19:23:53.000000Z"/>
+<entry
+   committed-rev="1"
+   name="u1_addition.py"
+   text-time="2009-09-15T19:23:53.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="9b229e21b5541002af7ccd3ba7e4078c"
+   kind="file"
+   prop-time="2009-09-15T19:23:53.000000Z"/>
+<entry
+   committed-rev="1"
+   name="u5_fan_salience.py"
+   text-time="2009-09-15T19:23:53.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="9acc181bd41a7885e155b29d8e28d717"
+   kind="file"
+   prop-time="2009-09-15T19:23:53.000000Z"/>
+<entry
+   committed-rev="1"
+   name="u1_addition2.py"
+   text-time="2009-09-15T19:23:53.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="1092f6b71c44b03ec9fbc3be4dd24c32"
+   kind="file"
+   prop-time="2009-09-15T19:23:53.000000Z"/>
+<entry
+   committed-rev="1"
+   name="u2_match.py"
+   text-time="2009-09-15T19:23:53.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="3a9b4c65731601d2b7115f2d867f3d0d"
+   kind="file"
+   prop-time="2009-09-15T19:23:53.000000Z"/>
+</wc-entries>

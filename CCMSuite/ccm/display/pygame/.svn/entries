@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="1"
+   name=""
+   committed-date="2009-09-12T07:31:16.004624Z"
+   url="svn://ccmsuite.ccmlab.ca/ccmsuite/ccm/display/pygame"
+   kind="dir"
+   uuid="4b6b830f-6793-4e15-8b12-0a2108279114"
+   repos="svn://ccmsuite.ccmlab.ca/ccmsuite"
+   revision="7"/>
+<entry
+   committed-rev="1"
+   name="core.py"
+   text-time="2009-09-15T19:23:45.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="568f463bd977391d7fd804d363012fd6"
+   kind="file"
+   prop-time="2009-09-15T19:23:45.000000Z"/>
+<entry
+   committed-rev="1"
+   name="__init__.py"
+   text-time="2009-09-15T19:23:45.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="45f41b062c14e8f442a9159bb1f31b50"
+   kind="file"
+   prop-time="2009-09-15T19:23:45.000000Z"/>
+<entry
+   committed-rev="1"
+   name="default.py"
+   text-time="2009-09-15T19:23:45.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="bef5264a09e206651031c8ca936e43f9"
+   kind="file"
+   prop-time="2009-09-15T19:23:45.000000Z"/>
+</wc-entries>

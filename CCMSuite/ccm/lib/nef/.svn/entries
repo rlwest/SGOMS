@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="1"
+   name=""
+   committed-date="2009-09-12T07:31:16.004624Z"
+   url="svn://ccmsuite.ccmlab.ca/ccmsuite/ccm/lib/nef"
+   kind="dir"
+   uuid="4b6b830f-6793-4e15-8b12-0a2108279114"
+   repos="svn://ccmsuite.ccmlab.ca/ccmsuite"
+   revision="7"/>
+<entry
+   committed-rev="1"
+   name="core.py"
+   text-time="2009-09-15T19:23:47.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="8d641b8bb53c1303d794cd4117d13c34"
+   kind="file"
+   prop-time="2009-09-15T19:23:47.000000Z"/>
+<entry
+   committed-rev="1"
+   name="connect.py"
+   text-time="2009-09-15T19:23:47.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="51112a9082dfc1dfb426e17b924ba1d4"
+   kind="file"
+   prop-time="2009-09-15T19:23:47.000000Z"/>
+<entry
+   committed-rev="1"
+   name="generate.py"
+   text-time="2009-09-15T19:23:47.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="ac4eda592942623099e6fb10faf5b5ef"
+   kind="file"
+   prop-time="2009-09-15T19:23:47.000000Z"/>
+<entry
+   committed-rev="1"
+   name="activity.py"
+   text-time="2009-09-15T19:23:47.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="f161a545b0d5287c0b263bc2db092461"
+   kind="file"
+   prop-time="2009-09-15T19:23:47.000000Z"/>
+<entry
+   committed-rev="1"
+   name="spikes.py"
+   text-time="2009-09-15T19:23:47.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="fa3af9e4e2f084924b9fe5fc8250a578"
+   kind="file"
+   prop-time="2009-09-15T19:23:47.000000Z"/>
+<entry
+   committed-rev="1"
+   name="__init__.py"
+   text-time="2009-09-15T19:23:47.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="9f5901c03f20d12bec40f3eb8b97c8eb"
+   kind="file"
+   prop-time="2009-09-15T19:23:47.000000Z"/>
+<entry
+   committed-rev="1"
+   name="helper.py"
+   text-time="2009-09-15T19:23:47.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="563e2a436a238c43dde3859ca9f96ba1"
+   kind="file"
+   prop-time="2009-09-15T19:23:47.000000Z"/>
+<entry
+   committed-rev="1"
+   name="values.py"
+   text-time="2009-09-15T19:23:47.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="c1c0174ee8207b2ddb101dafcbe13b88"
+   kind="file"
+   prop-time="2009-09-15T19:23:47.000000Z"/>
+<entry
+   committed-rev="1"
+   name="storage.py"
+   text-time="2009-09-15T19:23:47.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="06a19f1c4cae390b508a39fd823a0443"
+   kind="file"
+   prop-time="2009-09-15T19:23:47.000000Z"/>
+<entry
+   committed-rev="1"
+   name="highdimension.py"
+   text-time="2009-09-15T19:23:47.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="4ec300ce86a2ccc070d157b014c7dd20"
+   kind="file"
+   prop-time="2009-09-15T19:23:47.000000Z"/>
+</wc-entries>

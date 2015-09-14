@@ -1,6 +1,4 @@
-
- #################### SGOMS ###################
-
+#################### SGOMS ###################
 
 
 import sys
@@ -9,6 +7,7 @@ sys.path.append(os.getcwd()+'/CCMsuite/')
 
 import ccm      
 log=ccm.log()
+
 #log=ccm.log(html=True) 
 
 from ccm.lib.actr import *
@@ -244,14 +243,27 @@ class MyAgent(ACTR):
 
 
 
+########### create productions for choosing planning units #####################################
+#########################################################################
 
 
 
+        
 
+##this one fires when nothing has been done yet
+    def prep_wrap(b_context='finshed:nothing status:unoccupied'): # status:unoccupied triggers the selection of a planning unit
+         b_plan_unit.set('planning_unit:prep_wrap cuelag:none cue:start unit_task:veggies state:begin') # which planning unit and where to start
+         #b_unit_task.set('unit_task:veggies state:start') # ******** there is always a unit task that has just finished before another can start
+         b_context.set('finished:nothing status:occupied') # update context status to occupied
+         print 'prep the wrap planning unit is chosen'
+##this one fires on the condition that any other planning unit has been completed
+    def get_meat(b_context='finished:prep_wrap status:unoccupied'):
+         b_plan_unit.set('planning_unit:meat cuelag:none cue:start unit_task:check_meat state:running')
+         b_unit_task.set('unit_task:check_meat state:start')
+         b_context.set('finished:prep_wrap status:occupied')
+         print 'get the meat'
 
-
-
-
+         
 
 
 ############ add planning units to declarative memory and set context buffer ###############
@@ -276,58 +288,16 @@ class MyAgent(ACTR):
 
 
 
-
-
-
-
-
-
-
-
-
-
-########### create productions for choosing planning units #####################################
-#########################################################################
-
-##These productions fire when the agent has finished a planning unit
-##and is unoccupied. These examples are very simple, using single productions
-##to match to the context buffer. This type of decision would be very fast
-##and automatic
-
-        
-
-##this one fires when nothing has been done yet
-    def prep_wrap(b_context='finshed:nothing status:unoccupied'): # status:unoccupied triggers the selection of a planning unit
-         b_plan_unit.set('planning_unit:prep_wrap cuelag:none cue:start unit_task:veggies state:running') # which planning unit and where to start
-         b_unit_task.set('unit_task:veggies state:finished') # there is always a unit task that has just finished before another can start
-         b_context.set('finished:nothing status:occupied') # update context status to occupied
-         print 'prep the wrap'
-##this one fires on the condition that any other planning unit has been completed
-    def get_meat(b_context='finished:prep_wrap status:unoccupied'):
-         b_plan_unit.set('planning_unit:meat cuelag:none cue:start unit_task:check_meat state:running')
-         b_unit_task.set('unit_task:check_meat state:finished')
-         b_context.set('finished:prep_wrap status:occupied')
-         print 'get the meat'
-
-         
-
-
-##need models of more complex thinking that would involve DM retrievals and logical
-##inference and heuristics and further checking and discussion. According to SGOMS
-##theory, the method for choosing the next planning unit will be task dependent and
-##may be a source of significant individual differences
-
-##need routines for dealing with planning units that have been interupted
-
-
-
-
-
 ########## cycle for unit task retrieval #############################################
 #########################################################################
 
 ##This cycle is fixed for all SGOMS models. It is not task dependent
-   
+
+    def request_first_unit_task(b_plan_unit='planning_unit:?planning_unit cuelag:?cuelag cue:?cue unit_task:?unit_task state:begin'): 
+        b_unit_task.set('unit_task:?unit_task state:start')
+        b_plan_unit.set('planning_unit:?planning_unit cuelag:?cuelag cue:?cue unit_task:?unit_task state:running') # next unit task     
+
+        print 'begin with unit task = ',unit_task
 
     def request_next_unit_task(b_plan_unit='planning_unit:?planning_unit cuelag:?cuelag cue:?cue unit_task:?unit_task state:running',                   
                                b_unit_task='unit_task:?unit_task state:finished'): 
@@ -350,45 +320,9 @@ class MyAgent(ACTR):
 
 
 
-
-
-
-
-
-
-
-
 ################# unit tasks ######################################################
 ######################################################################
         
-
-##the unit task models are expert system models for completing a distinct
-##island of work. Unit tasks are assumed to have been created during learning
-##and/or training and they represent islands of work that avoid overload, downtime
-##and interuptions. According to rational analysis we expect few or no individual
-##differences in unit tasks. In SGOMS, individual differences are assumed to occur
-##when switching planning units and possibly, sometimes, within planning units
-##an example of a difference within planning units would be the florida garbage men
-##essentially, this would occur if someone has worked out a better way of doing
-##the task but it has not been diseminated to other workers
-
-##Unit tasks are not tied to specific planning units, they can
-##be re-used. Likewise, methods in the motor module can be re-used
-##by productions in any unit task. However, currently, productions in
-##the procedural module cannot be re-used, that is, each unit task has
-##its own productions and they are not shared. If a set of actions is re-occuring
-##accross different unit tasks then the current view is that that set of actions
-##should be a seperate unit task so that re-use can occur through the planning unit
-
-##the simplest type of unit task is just a chain of productions with no decision points.
-##In ACT-R these productions would be considered to be "complied." From ACT-R theory,
-##compilation only occurs if a set of actions is frequently repeated in the same order.
-##Also, the longer the sequence the harder it is to compile it so, in theory, we would
-##expect to see more shorter sequences and fewer longer sequences done in this way. SGOMS
-##has not yet been developed to the level of modeling the learning of a task so compiled
-##sequences are coded in by the programmer with the goal of creating them where the
-##theory suggests they should be
-
 
 
 ## veggies unit task

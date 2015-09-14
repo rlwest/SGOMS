@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="4"
+   name=""
+   committed-date="2009-09-12T08:10:00.818835Z"
+   url="svn://ccmsuite.ccmlab.ca/ccmsuite/ccm"
+   last-author="terry"
+   kind="dir"
+   uuid="4b6b830f-6793-4e15-8b12-0a2108279114"
+   repos="svn://ccmsuite.ccmlab.ca/ccmsuite"
+   revision="7"/>
+<entry
+   committed-rev="4"
+   name="bootstrapci.py"
+   text-time="2009-09-15T19:23:50.000000Z"
+   committed-date="2009-09-12T08:10:00.818835Z"
+   checksum="d88390b295f2fad5c5141fe268f8397b"
+   last-author="terry"
+   kind="file"
+   prop-time="2009-09-15T19:23:38.000000Z"/>
+<entry
+   committed-rev="4"
+   name="stats.py"
+   text-time="2009-09-15T19:23:50.000000Z"
+   committed-date="2009-09-12T08:10:00.818835Z"
+   checksum="d1ea66be20be73c9cf6a071d9d1a38e9"
+   last-author="terry"
+   kind="file"
+   prop-time="2009-09-15T19:23:45.000000Z"/>
+<entry
+   committed-rev="1"
+   name="__init__.py"
+   text-time="2009-09-15T19:23:50.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="b1eecc899969a362581ee60c07a0036c"
+   kind="file"
+   prop-time="2009-09-15T19:23:45.000000Z"/>
+<entry
+   committed-rev="1"
+   name="model.py"
+   text-time="2009-09-15T19:23:50.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="26621f8126f6945445e8be555d610fd0"
+   kind="file"
+   prop-time="2009-09-15T19:23:49.000000Z"/>
+<entry
+   committed-rev="1"
+   name="runner.py"
+   text-time="2009-09-15T19:23:50.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="73394a00a49f7af3eb56cb60d52262df"
+   kind="file"
+   prop-time="2009-09-15T19:23:38.000000Z"/>
+<entry
+   committed-rev="1"
+   name="view.py"
+   text-time="2009-09-15T19:23:50.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="bbe407d645bb6518ead4339864ee7975"
+   kind="file"
+   prop-time="2009-09-15T19:23:39.000000Z"/>
+<entry
+   name="tests"
+   kind="dir"/>
+<entry
+   committed-rev="1"
+   name="pattern.py"
+   text-time="2009-09-15T19:23:50.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="03f525f70c312bb295b96251e3320680"
+   kind="file"
+   prop-time="2009-09-15T19:23:45.000000Z"/>
+<entry
+   name="legacy"
+   kind="dir"/>
+<entry
+   committed-rev="1"
+   name="scheduler.py"
+   text-time="2009-09-15T19:23:50.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="c36084379b2237a16bd34ef66fdfb817"
+   kind="file"
+   prop-time="2009-09-15T19:23:45.000000Z"/>
+<entry
+   name="display"
+   kind="dir"/>
+<entry
+   committed-rev="1"
+   name="logger.py"
+   text-time="2009-09-15T19:23:50.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="173f14354f3396f9424643d4e8e47129"
+   kind="file"
+   prop-time="2009-09-15T19:23:49.000000Z"/>
+<entry
+   name="lib"
+   kind="dir"/>
+<entry
+   committed-rev="2"
+   name="production.py"
+   text-time="2009-09-15T19:23:50.000000Z"
+   committed-date="2009-09-12T08:03:52.230739Z"
+   checksum="18a72b9559112225c95c3326eddbd86f"
+   last-author="terry"
+   kind="file"
+   prop-time="2009-09-15T19:23:49.000000Z"/>
+<entry
+   name="ui"
+   kind="dir"/>
+</wc-entries>
