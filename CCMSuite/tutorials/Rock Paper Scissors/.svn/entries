@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="1"
+   name=""
+   committed-date="2009-09-12T07:31:16.004624Z"
+   url="svn://ccmsuite.ccmlab.ca/ccmsuite/tutorials/Rock%20Paper%20Scissors"
+   kind="dir"
+   uuid="4b6b830f-6793-4e15-8b12-0a2108279114"
+   repos="svn://ccmsuite.ccmlab.ca/ccmsuite"
+   revision="7"/>
+<entry
+   committed-rev="1"
+   name="7_lag.py"
+   text-time="2009-09-15T19:23:50.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="1349b95ea601a44ea0be6660358260ce"
+   kind="file"
+   prop-time="2009-09-15T19:23:50.000000Z"/>
+<entry
+   committed-rev="1"
+   name="4_rewards.py"
+   text-time="2009-09-15T19:23:50.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="dcd76f3725d69b75c0c1dda94a4b429b"
+   kind="file"
+   prop-time="2009-09-15T19:23:50.000000Z"/>
+<entry
+   committed-rev="1"
+   name="3_productions.py"
+   text-time="2009-09-15T19:23:50.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="d269ab116dc9a5b62f34a89cbf4a4ea5"
+   kind="file"
+   prop-time="2009-09-15T19:23:50.000000Z"/>
+<entry
+   committed-rev="1"
+   name="5_memory.py"
+   text-time="2009-09-15T19:23:50.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="1438885ba4cb03d9ad657e2285dcc65f"
+   kind="file"
+   prop-time="2009-09-15T19:23:50.000000Z"/>
+<entry
+   committed-rev="1"
+   name="8_lag3.py"
+   text-time="2009-09-15T19:23:50.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="f6af0127a95bb346e704e4fc9ac6b1ce"
+   kind="file"
+   prop-time="2009-09-15T19:23:50.000000Z"/>
+<entry
+   committed-rev="1"
+   name="1_environment.py"
+   text-time="2009-09-15T19:23:50.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="93f5601f42cab81d91c3be6c0621bf03"
+   kind="file"
+   prop-time="2009-09-15T19:23:50.000000Z"/>
+<entry
+   committed-rev="1"
+   name="2_play_rock.py"
+   text-time="2009-09-15T19:23:50.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="8cfa1e0b3526c212773231d0f8921b10"
+   kind="file"
+   prop-time="2009-09-15T19:23:50.000000Z"/>
+<entry
+   committed-rev="1"
+   name="6_activation.py"
+   text-time="2009-09-15T19:23:50.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="289d61707eb93f49efa37d692a582462"
+   kind="file"
+   prop-time="2009-09-15T19:23:50.000000Z"/>
+</wc-entries>

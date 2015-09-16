@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="7"
+   name=""
+   committed-date="2009-09-14T20:06:27.710071Z"
+   url="svn://ccmsuite.ccmlab.ca/ccmsuite/tutorials/Running%20Simulations"
+   last-author="terry"
+   kind="dir"
+   uuid="4b6b830f-6793-4e15-8b12-0a2108279114"
+   repos="svn://ccmsuite.ccmlab.ca/ccmsuite"
+   revision="7"/>
+<entry
+   committed-rev="7"
+   name="human.py"
+   text-time="2009-09-15T19:23:51.000000Z"
+   committed-date="2009-09-14T20:06:27.710071Z"
+   checksum="c91aaad9d037390679d12a685db8bf37"
+   last-author="terry"
+   kind="file"
+   prop-time="2009-09-15T19:23:51.000000Z"/>
+<entry
+   committed-rev="7"
+   name="sim_1.py"
+   text-time="2009-09-15T19:23:51.000000Z"
+   committed-date="2009-09-14T20:06:27.710071Z"
+   checksum="e58332b4db3c0987a573f066794e3426"
+   last-author="terry"
+   kind="file"
+   prop-time="2009-09-15T19:23:51.000000Z"/>
+<entry
+   committed-rev="7"
+   name="sim_2.py"
+   text-time="2009-09-15T19:23:51.000000Z"
+   committed-date="2009-09-14T20:06:27.710071Z"
+   checksum="c50ee71e6b20ef775c55961a70649a92"
+   last-author="terry"
+   kind="file"
+   prop-time="2009-09-15T19:23:51.000000Z"/>
+<entry
+   committed-rev="7"
+   name="sim_3.py"
+   text-time="2009-09-15T19:23:51.000000Z"
+   committed-date="2009-09-14T20:06:27.710071Z"
+   checksum="b4265cf70fbe4966d955788b4925c10e"
+   last-author="terry"
+   kind="file"
+   prop-time="2009-09-15T19:23:51.000000Z"/>
+<entry
+   committed-rev="7"
+   name="sim_2b.py"
+   text-time="2009-09-15T19:23:51.000000Z"
+   committed-date="2009-09-14T20:06:27.710071Z"
+   checksum="908dffcbba9000d3a33d6c137a478a00"
+   last-author="terry"
+   kind="file"
+   prop-time="2009-09-15T19:23:51.000000Z"/>
+<entry
+   committed-rev="7"
+   name="sim_2c.py"
+   text-time="2009-09-15T19:23:51.000000Z"
+   committed-date="2009-09-14T20:06:27.710071Z"
+   checksum="3522ecf8c4dcf862a8ebbb8f16198ce9"
+   last-author="terry"
+   kind="file"
+   prop-time="2009-09-15T19:23:51.000000Z"/>
+<entry
+   committed-rev="7"
+   name="sim_3b.py"
+   text-time="2009-09-15T19:23:51.000000Z"
+   committed-date="2009-09-14T20:06:27.710071Z"
+   checksum="de36eeb1da11b4167b1d03d76958c2b9"
+   last-author="terry"
+   kind="file"
+   prop-time="2009-09-15T19:23:51.000000Z"/>
+<entry
+   name="human"
+   kind="dir"/>
+<entry
+   name="Running Simulations_files"
+   kind="dir"/>
+<entry
+   committed-rev="7"
+   name="Running Simulations.html"
+   text-time="2009-09-15T19:23:51.000000Z"
+   committed-date="2009-09-14T20:06:27.710071Z"
+   checksum="e7c004bce53ee7a6631549ac5b4943dc"
+   last-author="terry"
+   kind="file"
+   prop-time="2009-09-15T19:23:51.000000Z"/>
+<entry
+   committed-rev="7"
+   name="paired.py"
+   text-time="2009-09-15T19:23:51.000000Z"
+   committed-date="2009-09-14T20:06:27.710071Z"
+   checksum="9de49acc612944f8863f36f743aa807f"
+   last-author="terry"
+   kind="file"
+   prop-time="2009-09-15T19:23:51.000000Z"/>
+</wc-entries>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="1"
+   name=""
+   committed-date="2009-09-12T07:31:16.004624Z"
+   url="svn://ccmsuite.ccmlab.ca/ccmsuite/ccm/display/cairo"
+   kind="dir"
+   uuid="4b6b830f-6793-4e15-8b12-0a2108279114"
+   repos="svn://ccmsuite.ccmlab.ca/ccmsuite"
+   revision="7"/>
+<entry
+   committed-rev="1"
+   name="core.py"
+   text-time="2009-09-15T19:23:45.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="842a4510c025774aee75fce5ba7ced26"
+   kind="file"
+   prop-time="2009-09-15T19:23:45.000000Z"/>
+<entry
+   committed-rev="1"
+   name="__init__.py"
+   text-time="2009-09-15T19:23:45.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="d41d8cd98f00b204e9800998ecf8427e"
+   kind="file"
+   prop-time="2009-09-15T19:23:45.000000Z"/>
+</wc-entries>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="1"
+   name=""
+   committed-date="2009-09-12T07:31:16.004624Z"
+   url="svn://ccmsuite.ccmlab.ca/ccmsuite/tutorials/Grid%20World"
+   kind="dir"
+   uuid="4b6b830f-6793-4e15-8b12-0a2108279114"
+   repos="svn://ccmsuite.ccmlab.ca/ccmsuite"
+   revision="7"/>
+<entry
+   committed-rev="1"
+   name="1_basic_world.py"
+   text-time="2009-09-15T19:23:53.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="fef58455d0b3f72f2351728b3d6402fd"
+   kind="file"
+   prop-time="2009-09-15T19:23:53.000000Z"/>
+<entry
+   committed-rev="1"
+   name="4_logging.py"
+   text-time="2009-09-15T19:23:53.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="6d7ff1b01cc4fee65eb90758ce64f5ef"
+   kind="file"
+   prop-time="2009-09-15T19:23:53.000000Z"/>
+<entry
+   committed-rev="1"
+   name="5_motor_module.py"
+   text-time="2009-09-15T19:23:53.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="878e69ad4347ac9c0ce335b5e660841a"
+   kind="file"
+   prop-time="2009-09-15T19:23:53.000000Z"/>
+<entry
+   committed-rev="1"
+   name="7_vision.py"
+   text-time="2009-09-15T19:23:53.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="475b4cf675efe6c3a45c703252020aa2"
+   kind="file"
+   prop-time="2009-09-15T19:23:53.000000Z"/>
+<entry
+   committed-rev="1"
+   name="8_visual_search.py"
+   text-time="2009-09-15T19:23:53.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="9cdffb43c8b916c040d0e6373a0638eb"
+   kind="file"
+   prop-time="2009-09-15T19:23:53.000000Z"/>
+<entry
+   committed-rev="1"
+   name="6_things.py"
+   text-time="2009-09-15T19:23:53.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="230b89f92eecd4087d1f9e79882f1926"
+   kind="file"
+   prop-time="2009-09-15T19:23:53.000000Z"/>
+<entry
+   committed-rev="1"
+   name="2_agents.py"
+   text-time="2009-09-15T19:23:53.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="06a8293ccfa8135a5e48364acad8ee79"
+   kind="file"
+   prop-time="2009-09-15T19:23:53.000000Z"/>
+<entry
+   committed-rev="1"
+   name="3_many_agents.py"
+   text-time="2009-09-15T19:23:53.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="2394b8df9778472e5cdc3aee172f77bf"
+   kind="file"
+   prop-time="2009-09-15T19:23:53.000000Z"/>
+<entry
+   committed-rev="1"
+   name="9_interaction.py"
+   text-time="2009-09-15T19:23:53.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="bb4d892cda7aa45d82d80f19d49ad06d"
+   kind="file"
+   prop-time="2009-09-15T19:23:53.000000Z"/>
+</wc-entries>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="1"
+   name=""
+   committed-date="2009-09-12T07:31:16.004624Z"
+   url="svn://ccmsuite.ccmlab.ca/ccmsuite/tutorials/Associative%20Memory"
+   kind="dir"
+   uuid="4b6b830f-6793-4e15-8b12-0a2108279114"
+   repos="svn://ccmsuite.ccmlab.ca/ccmsuite"
+   revision="7"/>
+<entry
+   committed-rev="1"
+   name="associate.py"
+   text-time="2009-09-15T19:23:50.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="7c7c557f613b1bcaafa12491ff836a73"
+   kind="file"
+   prop-time="2009-09-15T19:23:50.000000Z"/>
+</wc-entries>

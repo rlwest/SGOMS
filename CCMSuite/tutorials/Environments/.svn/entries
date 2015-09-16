@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="1"
+   name=""
+   committed-date="2009-09-12T07:31:16.004624Z"
+   url="svn://ccmsuite.ccmlab.ca/ccmsuite/tutorials/Environments"
+   kind="dir"
+   uuid="4b6b830f-6793-4e15-8b12-0a2108279114"
+   repos="svn://ccmsuite.ccmlab.ca/ccmsuite"
+   revision="7"/>
+<entry
+   committed-rev="1"
+   name="5_active_objects.py"
+   text-time="2009-09-15T19:23:51.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="f480c5676465e5d119178d18ebb378f8"
+   kind="file"
+   prop-time="2009-09-15T19:23:50.000000Z"/>
+<entry
+   committed-rev="1"
+   name="7_changing_display.py"
+   text-time="2009-09-15T19:23:51.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="97e335c27e49e6f3727db4b2cdea34f5"
+   kind="file"
+   prop-time="2009-09-15T19:23:50.000000Z"/>
+<entry
+   committed-rev="1"
+   name="6_display.py"
+   text-time="2009-09-15T19:23:51.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="7d388d2e30d94b686b836e3210281f4b"
+   kind="file"
+   prop-time="2009-09-15T19:23:50.000000Z"/>
+<entry
+   committed-rev="1"
+   name="3_measuring.py"
+   text-time="2009-09-15T19:23:51.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="306dcfba56b1bf2416702de1ea59de3e"
+   kind="file"
+   prop-time="2009-09-15T19:23:50.000000Z"/>
+<entry
+   committed-rev="1"
+   name="4_objects.py"
+   text-time="2009-09-15T19:23:51.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="4bc953553721312bdc255b27dd629f82"
+   kind="file"
+   prop-time="2009-09-15T19:23:50.000000Z"/>
+<entry
+   committed-rev="1"
+   name="1_basics.py"
+   text-time="2009-09-15T19:23:51.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="baf3c43b03956685815c20eb0d8cbf4e"
+   kind="file"
+   prop-time="2009-09-15T19:23:50.000000Z"/>
+<entry
+   committed-rev="1"
+   name="2_stopping.py"
+   text-time="2009-09-15T19:23:51.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="73b2c6035cd3a2e44dea017e5e7e3cd1"
+   kind="file"
+   prop-time="2009-09-15T19:23:51.000000Z"/>
+<entry
+   committed-rev="1"
+   name="8_user_interaction.py"
+   text-time="2009-09-15T19:23:51.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="99780517a40b86ce711d9fb256d4fbc2"
+   kind="file"
+   prop-time="2009-09-15T19:23:51.000000Z"/>
+</wc-entries>

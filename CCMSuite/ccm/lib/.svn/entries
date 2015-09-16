@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="1"
+   name=""
+   committed-date="2009-09-12T07:31:16.004624Z"
+   url="svn://ccmsuite.ccmlab.ca/ccmsuite/ccm/lib"
+   kind="dir"
+   uuid="4b6b830f-6793-4e15-8b12-0a2108279114"
+   repos="svn://ccmsuite.ccmlab.ca/ccmsuite"
+   revision="7"/>
+<entry
+   committed-rev="1"
+   name="relacs.py"
+   text-time="2009-09-15T19:23:49.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="65c562feed662b2a1c6b517ba948c1f5"
+   kind="file"
+   prop-time="2009-09-15T19:23:47.000000Z"/>
+<entry
+   committed-rev="1"
+   name="hrr.py"
+   text-time="2009-09-15T19:23:49.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="583c88186af6c22a507d921a31297354"
+   kind="file"
+   prop-time="2009-09-15T19:23:47.000000Z"/>
+<entry
+   committed-rev="1"
+   name="__init__.py"
+   text-time="2009-09-15T19:23:49.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="3b1f0d9b4d1c75fcd31062503a93f80b"
+   kind="file"
+   prop-time="2009-09-15T19:23:47.000000Z"/>
+<entry
+   name="nef"
+   kind="dir"/>
+<entry
+   name="actr"
+   kind="dir"/>
+<entry
+   committed-rev="1"
+   name="qlearn.py"
+   text-time="2009-09-15T19:23:49.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="3968cc2b65f6cf0fa352224b410a3a00"
+   kind="file"
+   prop-time="2009-09-15T19:23:49.000000Z"/>
+<entry
+   committed-rev="1"
+   name="cellular.py"
+   text-time="2009-09-15T19:23:49.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="f4e0731046638a73c5c579d6e38535ae"
+   kind="file"
+   prop-time="2009-09-15T19:23:49.000000Z"/>
+<entry
+   committed-rev="1"
+   name="grid.py"
+   text-time="2009-09-15T19:23:49.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="013df042df87ef6bd689c2607b01b916"
+   kind="file"
+   prop-time="2009-09-15T19:23:49.000000Z"/>
+</wc-entries>

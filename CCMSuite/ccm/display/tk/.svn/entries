@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="1"
+   name=""
+   committed-date="2009-09-12T07:31:16.004624Z"
+   url="svn://ccmsuite.ccmlab.ca/ccmsuite/ccm/display/tk"
+   kind="dir"
+   uuid="4b6b830f-6793-4e15-8b12-0a2108279114"
+   repos="svn://ccmsuite.ccmlab.ca/ccmsuite"
+   revision="7"/>
+<entry
+   committed-rev="1"
+   name="core.py"
+   text-time="2009-09-15T19:23:45.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="0e48b45647488848f51f3ab4afe796df"
+   kind="file"
+   prop-time="2009-09-15T19:23:45.000000Z"/>
+<entry
+   committed-rev="1"
+   name="__init__.py"
+   text-time="2009-09-15T19:23:45.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="07c04c1d590903bcd451e4b9fb7dfd5c"
+   kind="file"
+   prop-time="2009-09-15T19:23:45.000000Z"/>
+<entry
+   committed-rev="1"
+   name="cellular.py"
+   text-time="2009-09-15T19:23:45.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="9000c615a92c674ac9193d1df72a1d44"
+   kind="file"
+   prop-time="2009-09-15T19:23:45.000000Z"/>
+<entry
+   committed-rev="1"
+   name="default.py"
+   text-time="2009-09-15T19:23:45.000000Z"
+   committed-date="2009-09-12T07:31:16.004624Z"
+   checksum="0525a0e05d531d91592c23ddaad81f6d"
+   kind="file"
+   prop-time="2009-09-15T19:23:45.000000Z"/>
+</wc-entries>

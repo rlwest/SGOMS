@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="7"
+   name=""
+   committed-date="2009-09-14T20:06:27.710071Z"
+   url="svn://ccmsuite.ccmlab.ca/ccmsuite/tutorials"
+   last-author="terry"
+   kind="dir"
+   uuid="4b6b830f-6793-4e15-8b12-0a2108279114"
+   repos="svn://ccmsuite.ccmlab.ca/ccmsuite"
+   revision="7"/>
+<entry
+   name="Rock Paper Scissors"
+   kind="dir"/>
+<entry
+   name="Associative Memory"
+   kind="dir"/>
+<entry
+   name="Environments"
+   kind="dir"/>
+<entry
+   name="Running Simulations"
+   kind="dir"/>
+<entry
+   name="Introduction to ACT-R"
+   kind="dir"/>
+<entry
+   name="ACT-R Unit Tutorials"
+   kind="dir"/>
+<entry
+   name="Grid World"
+   kind="dir"/>
+</wc-entries>

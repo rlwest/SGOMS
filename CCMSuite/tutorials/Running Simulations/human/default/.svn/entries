@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="7"
+   name=""
+   committed-date="2009-09-14T20:06:27.710071Z"
+   url="svn://ccmsuite.ccmlab.ca/ccmsuite/tutorials/Running%20Simulations/human/default"
+   last-author="terry"
+   kind="dir"
+   uuid="4b6b830f-6793-4e15-8b12-0a2108279114"
+   repos="svn://ccmsuite.ccmlab.ca/ccmsuite"
+   revision="7"/>
+<entry
+   committed-rev="7"
+   name="20090802-155645-02b39b76.data"
+   text-time="2009-09-15T19:23:51.000000Z"
+   committed-date="2009-09-14T20:06:27.710071Z"
+   checksum="dc0e472fde15260e350b8ba2e8ae82b7"
+   last-author="terry"
+   kind="file"
+   prop-time="2009-09-15T19:23:51.000000Z"/>
+<entry
+   committed-rev="7"
+   name="20090802-155645-1c757af1.data"
+   text-time="2009-09-15T19:23:51.000000Z"
+   committed-date="2009-09-14T20:06:27.710071Z"
+   checksum="88d728c09014f620986d4c4a51c2d473"
+   last-author="terry"
+   kind="file"
+   prop-time="2009-09-15T19:23:51.000000Z"/>
+<entry
+   committed-rev="7"
+   name="20090802-155645-688eb031.data"
+   text-time="2009-09-15T19:23:51.000000Z"
+   committed-date="2009-09-14T20:06:27.710071Z"
+   checksum="85111f15e0f0f1d71117c663757db32a"
+   last-author="terry"
+   kind="file"
+   prop-time="2009-09-15T19:23:51.000000Z"/>
+<entry
+   committed-rev="7"
+   name="20090802-155645-011241fd.data"
+   text-time="2009-09-15T19:23:51.000000Z"
+   committed-date="2009-09-14T20:06:27.710071Z"
+   checksum="3cef3c19c2e604a278a855c502dd0204"
+   last-author="terry"
+   kind="file"
+   prop-time="2009-09-15T19:23:51.000000Z"/>
+<entry
+   committed-rev="7"
+   name="20090802-155645-34d8d56d.data"
+   text-time="2009-09-15T19:23:51.000000Z"
+   committed-date="2009-09-14T20:06:27.710071Z"
+   checksum="5e8926f25072c987bdc6bd2b4287b8a0"
+   last-author="terry"
+   kind="file"
+   prop-time="2009-09-15T19:23:51.000000Z"/>
+<entry
+   committed-rev="7"
+   name="20090802-155645-7aa40733.data"
+   text-time="2009-09-15T19:23:51.000000Z"
+   committed-date="2009-09-14T20:06:27.710071Z"
+   checksum="b5558158754a48aca8756e1f6a8a3a22"
+   last-author="terry"
+   kind="file"
+   prop-time="2009-09-15T19:23:51.000000Z"/>
+<entry
+   committed-rev="7"
+   name="20090802-155645-4bf07798.data"
+   text-time="2009-09-15T19:23:51.000000Z"
+   committed-date="2009-09-14T20:06:27.710071Z"
+   checksum="9b70a4c6902b621e42fb22e30ebef7df"
+   last-author="terry"
+   kind="file"
+   prop-time="2009-09-15T19:23:51.000000Z"/>
+<entry
+   committed-rev="7"
+   name="20090802-155645-7725402a.data"
+   text-time="2009-09-15T19:23:51.000000Z"
+   committed-date="2009-09-14T20:06:27.710071Z"
+   checksum="5b1fb7eb46167b12024c29daef628a01"
+   last-author="terry"
+   kind="file"
+   prop-time="2009-09-15T19:23:51.000000Z"/>
+<entry
+   committed-rev="7"
+   name="20090802-155645-0bfee1df.data"
+   text-time="2009-09-15T19:23:51.000000Z"
+   committed-date="2009-09-14T20:06:27.710071Z"
+   checksum="948da22e051ca09cf4a75d714229e786"
+   last-author="terry"
+   kind="file"
+   prop-time="2009-09-15T19:23:51.000000Z"/>
+<entry
+   committed-rev="7"
+   name="20090802-155645-7123a66c.data"
+   text-time="2009-09-15T19:23:51.000000Z"
+   committed-date="2009-09-14T20:06:27.710071Z"
+   checksum="8826dd4b5cea9602e6f83ebd57651c4a"
+   last-author="terry"
+   kind="file"
+   prop-time="2009-09-15T19:23:51.000000Z"/>
+</wc-entries>
