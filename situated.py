@@ -180,7 +180,7 @@ class MyAgent(ACTR):
 
 ##this one fires when nothing has been done yet
     def prep_wrap(b_context='finshed:nothing status:unoccupied'): # status:unoccupied triggers the selection of a planning unit
-         b_plan_unit.set('planning_unit:prep_wrap cuelag:none cue:start unit_task:veggies state:begin_situated') # which planning unit and where to start
+         b_plan_unit.set('planning_unit:prep_wrap cuelag:none cue:start unit_task:veggies state:begin_sequence') # which planning unit and where to start
          b_context.set('finished:nothing status:occupied') # update context status to occupied
          print 'prep the wrap planning unit is chosen'
 ##this one fires on the condition that any other planning unit has been completed
@@ -201,23 +201,21 @@ class MyAgent(ACTR):
 
 ## these set up whether it will be an ordered or a situated planning unit
          
-#    def setup_situated_planning_unit(b_plan_unit='planning_unit:?planning_unit state:begin_situated'): 
-#        b_unit_task.set('state:start') # unit tasks = any unit task
-#        b_plan_unit.set('planning_unit:?planning_unit cuelag:?cuelag cue:?cue unit_task:?unit_task state:running') # next unit task     
-#        print 'begin orderdered planning with unit task = ',unit_task
+
     def setup_situated_planning_unit(b_plan_unit='planning_unit:?planning_unit cuelag:?cuelag cue:?cue unit_task:?unit_task state:begin_situated'): 
-        b_unit_task.set('unit_task:?unit_task state:start')
+        b_unit_task.set('state:start type:unordered')
         b_plan_unit.set('planning_unit:?planning_unit cuelag:?cuelag cue:?cue unit_task:?unit_task state:running') # next unit task     
-        print 'begin orderdered planning with unit task = ',unit_task
+        print 'begin unorderdered planning with unit task = ',unit_task
+        
     def setup_ordered_planning_unit(b_plan_unit='planning_unit:?planning_unit cuelag:?cuelag cue:?cue unit_task:?unit_task state:begin_sequence'): 
-        b_unit_task.set('unit_task:?unit_task state:start')
+        b_unit_task.set('unit_task:?unit_task state:start type:ordered')
         b_plan_unit.set('planning_unit:?planning_unit cuelag:?cuelag cue:?cue unit_task:?unit_task state:running') # next unit task     
         print 'begin orderdered planning with unit task = ',unit_task
 
 ## these manage the sequence
 
     def request_next_unit_task(b_plan_unit='planning_unit:?planning_unit cuelag:?cuelag cue:?cue unit_task:?unit_task state:running',                   
-                               b_unit_task='unit_task:?unit_task state:finished'): 
+                               b_unit_task='unit_task:?unit_task state:finished type:ordered'): 
         DM.request('planning_unit:?planning_unit cue:?unit_task unit_task:? cuelag:?cue')                 
         b_plan_unit.set('planning_unit:?planning_unit cuelag:?cuelag cue:?cue unit_task:?unit_task state:retrieve') # next unit task     
         print 'finished unit task = ',unit_task
@@ -225,11 +223,11 @@ class MyAgent(ACTR):
     def retrieve_next_unit_task(b_plan_unit='state:retrieve',
                                 b_DM='planning_unit:?planning_unit cuelag:?cuelag cue:?cue!finished unit_task:?unit_task'): 
         b_plan_unit.set('planning_unit:?planning_unit cuelag:?cuelag cue:?cue unit_task:?unit_task state:running')
-        b_unit_task.set('unit_task:?unit_task state:start')
+        b_unit_task.set('unit_task:?unit_task state:start type:ordered')
         print 'unit_task = ',unit_task
 
     def last_unit_task(b_plan_unit='planning_unit:?planning_unit',
-                       b_unit_task='unit_task:finished state:start'):
+                       b_unit_task='unit_task:finished state:start type:ordered'):
         print 'finished planning unit=',planning_unit
         b_unit_task.set('stop')
         b_context.set('finished:?planning_unit status:unoccupied')
@@ -244,7 +242,12 @@ class MyAgent(ACTR):
 
 ## veggies unit task
 
-    def vegg_unit_task(b_unit_task='unit_task:veggies state:start'):
+
+    def vegg_unit_task_free(b_unit_task='state:start type:unordered'):
+        print 'start the veggies unit task'
+        b_unit_task.set('unit_task:veggies state:running')
+        b_method.set('method:add target:lettuce state:start') 
+    def vegg_unit_task_ordered(b_unit_task='unit_task:veggies state:start'):
         print 'start the veggies unit task'
         b_unit_task.set('unit_task:veggies state:running')
         b_method.set('method:add target:lettuce state:start')  
@@ -267,7 +270,7 @@ class MyAgent(ACTR):
     def mushroom(b_unit_task='unit_task:veggies state:running',
                  b_method='method:add target:mushroom state:finished'):
         print 'mushroom method finished'
-        b_unit_task.set('unit_task:veggies state:finished')   
+        b_unit_task.set('unit_task:veggies state:finished type:unordered')   
         
 ## cheese unit task
 
