@@ -154,38 +154,28 @@ class MyAgent(ACTR):
     p_vision=VisionModule(b_visual)    
 
 ############ add planning units to declarative memory and set context buffer ###############
-#########################################################################
     
-    def init():                                             
-
-        DM.add ('planning_unit:prep_wrap    cuelag:none          cue:start          unit_task:X')
-        DM.add ('planning_unit:prep_wrap    cuelag:start         cue:X        unit_task:cheese')
-        DM.add ('planning_unit:prep_wrap    cuelag:veggies       cue:cheese         unit_task:pickles')       
-        DM.add ('planning_unit:prep_wrap    cuelag:cheese        cue:pickles        unit_task:spreads')
-        DM.add ('planning_unit:prep_wrap    cuelag:pickles       cue:spreads        unit_task:sauce')
-        DM.add ('planning_unit:prep_wrap    cuelag:spreads       cue:sauce          unit_task:finished')
-
+    def init():
         DM.add ('planning_unit:XY         cuelag:none          cue:start          unit_task:X')
         DM.add ('planning_unit:XY         cuelag:start         cue:X              unit_task:Y')
         DM.add ('planning_unit:XY         cuelag:X             cue:Y              unit_task:finished')
-
-
         b_context.set('finshed:nothing status:unoccupied')
 
 
 ########### create productions for choosing planning units ###########
 
-##this one fires when nothing has been done yet
-    def prep_wrap(b_context='finshed:nothing status:unoccupied'): # status:unoccupied triggers the selection of a planning unit
+## these productions are the highest level of SGOMS and fire off the context buffer
+## they can take any ACT-R form (one production or more) but must eventually call a planning unit and update the context buffer
+
+    def run_sequence(b_context='finshed:nothing status:unoccupied'): # status:unoccupied triggers the selection of a planning unit
          b_plan_unit.set('planning_unit:XY cuelag:none cue:start unit_task:X state:begin_sequence') # state: can be begin_situated or begin_sequence
          b_context.set('finished:nothing status:occupied') # update context status to occupied
-         print 'prep the wrap planning unit is chosen'
-##this one fires on the condition that any other planning unit has been completed
-    def get_meat(b_context='finished:prep_wrap status:unoccupied'):
-         b_plan_unit.set('planning_unit:meat cuelag:none cue:start unit_task:check_meat state:running')
-         b_unit_task.set('unit_task:check_meat state:start')
-         b_context.set('finished:prep_wrap status:occupied')
-         print 'get the meat'
+         print 'sequence planning unit is chosen'
+
+    def run_situated(b_context='finshed:nothing status:unoccupied'): # status:unoccupied triggers the selection of a planning unit
+         b_plan_unit.set('planning_unit:XY cuelag:none cue:start unit_task:X state:begin_situated') # state: can be begin_situated or begin_sequence
+         b_context.set('finished:nothing status:occupied') # update context status to occupied
+         print 'unordered planning unit is chosen'
 
 
 ########## unit task set up ###########
@@ -195,12 +185,12 @@ class MyAgent(ACTR):
     def setup_situated_planning_unit(b_plan_unit='planning_unit:?planning_unit cuelag:?cuelag cue:?cue unit_task:?unit_task state:begin_situated'): 
         b_unit_task.set('state:start type:unordered')
         b_plan_unit.set('planning_unit:?planning_unit cuelag:?cuelag cue:?cue unit_task:?unit_task state:running') # next unit task     
-        print 'begin unorderdered planning with unit task = ',unit_task
+        print 'begin situated planning unit = ',planning_unit
         
     def setup_ordered_planning_unit(b_plan_unit='planning_unit:?planning_unit cuelag:?cuelag cue:?cue unit_task:?unit_task state:begin_sequence'): 
         b_unit_task.set('unit_task:?unit_task state:start type:ordered')
         b_plan_unit.set('planning_unit:?planning_unit cuelag:?cuelag cue:?cue unit_task:?unit_task state:running') # next unit task     
-        print 'begin orderdered planning with unit task = ',unit_task
+        print 'begin orderdered planning unit = ',planning_unit
 
 ## these manage the sequence
 
@@ -298,17 +288,11 @@ class MyAgent(ACTR):
         b_unit_task.set('unit_task:Y state:finished type:unordered')
 
 
-
-
-
-
-############## run model ##########################################
-####################################################
+############## run model #############
           
 tim=MyAgent()                              # name the agent
 subway=MyEnvironment()                     # name the environment
 subway.agent=tim                           # put the agent in the environment
 ccm.log_everything(subway)                 # print out what happens in the environment
-
 subway.run()                               # run the environment
 ccm.finished()                             # stop the environment
