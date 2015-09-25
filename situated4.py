@@ -173,14 +173,7 @@ class MyAgent(ACTR):
         b_context.set('finshed:nothing status:unoccupied')
 
 
-
-
-########### create productions for choosing planning units #####################################
-#########################################################################
-
-
-
-        
+########### create productions for choosing planning units ###########
 
 ##this one fires when nothing has been done yet
     def prep_wrap(b_context='finshed:nothing status:unoccupied'): # status:unoccupied triggers the selection of a planning unit
@@ -194,17 +187,10 @@ class MyAgent(ACTR):
          b_context.set('finished:prep_wrap status:occupied')
          print 'get the meat'
 
-         
 
-
-
-
-########## unit task set up #############################################
-#########################################################################
-
+########## unit task set up ###########
 
 ## these set up whether it will be an ordered or a situated planning unit
-         
 
     def setup_situated_planning_unit(b_plan_unit='planning_unit:?planning_unit cuelag:?cuelag cue:?cue unit_task:?unit_task state:begin_situated'): 
         b_unit_task.set('state:start type:unordered')
@@ -237,12 +223,7 @@ class MyAgent(ACTR):
         b_context.set('finished:?planning_unit status:unoccupied')
 
 
-
-
-################# unit tasks ######################################################
-######################################################################
-        
-
+################# unit tasks #################
 
 ## X unit task
 
