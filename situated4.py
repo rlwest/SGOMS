@@ -165,9 +165,9 @@ class MyAgent(ACTR):
         DM.add ('planning_unit:prep_wrap    cuelag:pickles       cue:spreads        unit_task:sauce')
         DM.add ('planning_unit:prep_wrap    cuelag:spreads       cue:sauce          unit_task:finished')
 
-        DM.add ('planning_unit:meat         cuelag:none          cue:start          unit_task:check_meat')                     
-        DM.add ('planning_unit:meat         cuelag:start         cue:check_meat     unit_task:add_meat')
-        DM.add ('planning_unit:meat         cuelag:check_meat    cue:add_meat       unit_task:finished')       
+        DM.add ('planning_unit:XY         cuelag:none          cue:start          unit_task:X')
+        DM.add ('planning_unit:XY         cuelag:start         cue:X              unit_task:Y')
+        DM.add ('planning_unit:XY         cuelag:X             cue:Y              unit_task:finished')
 
 
         b_context.set('finshed:nothing status:unoccupied')
@@ -177,7 +177,7 @@ class MyAgent(ACTR):
 
 ##this one fires when nothing has been done yet
     def prep_wrap(b_context='finshed:nothing status:unoccupied'): # status:unoccupied triggers the selection of a planning unit
-         b_plan_unit.set('planning_unit:prep_wrap cuelag:none cue:start unit_task:X state:begin_situated') # which planning unit and where to start
+         b_plan_unit.set('planning_unit:XY cuelag:none cue:start unit_task:X state:begin_sequence') # state: can be begin_situated or begin_sequence
          b_context.set('finished:nothing status:occupied') # update context status to occupied
          print 'prep the wrap planning unit is chosen'
 ##this one fires on the condition that any other planning unit has been completed
