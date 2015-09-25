@@ -257,32 +257,24 @@ class MyAgent(ACTR):
 ## the first production in the unit task must begin in this way
     def X_start_unit_task(b_unit_task='unit_task:X state:begin type:?type'):
         b_unit_task.set('unit_task:X state:running type:?type')
-        ## then anything can be added
-        b_method.set('method:add target:tomato state:start')
-        b_focus.set('')
-        print 'start unit task'
+        b_focus.set('method1')
+        print 'start unit task X'
 ## body of the unit task
-    def tomato(b_unit_task='unit_task:X state:running type:?type', ## this line stays the same
-               b_method='method:add target:tomato state:finished'): ## the rest can be anything
-        print 'tomato method finished'
-        b_method.set('method:add target:cucumber state:start')
-    def cucumber(b_unit_task='unit_task:X state:running type:?type', ## same
-                 b_method='method:add target:cucumber state:finished'): ## anything
-        print 'cucumber method finished'
-        b_method.set('method:add target:green_pepper state:start')
-    def green_pepper(b_unit_task='unit_task:X state:running type:?type', ## same
-                     b_method='method:add target:green_pepper state:finished'): ## anything
+    def X1(b_unit_task='unit_task:X state:running type:?type', b_focus='method1'):
+        b_focus.set('method2')
+        print 'method 1 in unit task X done'
+    def X2(b_unit_task='unit_task:X state:running type:?type', b_focus='method2'):
+        b_focus.set('done')
         b_unit_task.set('unit_task:X state:end type:?type') ## this line ends the unit task
-        print 'green_pepper method finished'
+        print 'method 2 in unit task X done'
 ## finishing the unit task
     def finished_ordered(b_unit_task='unit_task:X state:end type:ordered'):
-        print 'finished unit task - ordered'
+        print 'finished unit task X - ordered'
         b_unit_task.set('unit_task:X state:finished type:ordered')
 
     def finished_unordered(b_unit_task='unit_task:X state:end type:unordered'):
-        print 'finished unit task - unordered'
+        print 'finished unit task X - unordered'
         b_unit_task.set('unit_task:X state:finished type:unordered')
-
 
 
 ## Y unit task
@@ -292,118 +284,40 @@ class MyAgent(ACTR):
     def Y_unit_task_unordered(b_unit_task='state:start type:unordered'):
         b_unit_task.set('unit_task:Y state:begin type:unordered')
         print 'start unit task Y unordered'
-    def Y_unit_task_ordered(b_unit_task='unit_task:X state:start type:ordered'):
-        b_unit_task.set('unit_task:X state:begin type:ordered')
+    def Y_unit_task_ordered(b_unit_task='unit_task:Y state:start type:ordered'):
+        b_unit_task.set('unit_task:Y state:begin type:ordered')
         print 'start unit task Y ordered'
 ## the first production in the unit task must begin in this way
-    def Y_start_unit_task(b_unit_task='unit_task:X state:begin type:?type'):
-        b_unit_task.set('unit_task:X state:running type:?type')
+    def Y_start_unit_task(b_unit_task='unit_task:Y state:begin type:?type'):
+        b_unit_task.set('unit_task:Y state:running type:?type')
         ## then anything can be added
         b_method.set('method:add target:tomato state:start')
         b_focus.set('')
-        print 'start unit task'
+        print 'start unit task Y'
 ## body of the unit task
-    def ytomato(b_unit_task='unit_task:X state:running type:?type', ## this line stays the same
+    def ytomato(b_unit_task='unit_task:Y state:running type:?type', ## this line stays the same
                b_method='method:add target:tomato state:finished'): ## the rest can be anything
-        print 'tomato method finished'
+        print 'tomato Y method finished'
         b_method.set('method:add target:cucumber state:start')
-    def ycucumber(b_unit_task='unit_task:X state:running type:?type', ## same
+    def ycucumber(b_unit_task='unit_task:Y state:running type:?type', ## same
                  b_method='method:add target:cucumber state:finished'): ## anything
-        print 'cucumber method finished'
+        print 'cucumber Y method finished'
         b_method.set('method:add target:green_pepper state:start')
-    def ygreen_pepper(b_unit_task='unit_task:X state:running type:?type', ## same
+    def ygreen_pepper(b_unit_task='unit_task:Y state:running type:?type', ## same
                      b_method='method:add target:green_pepper state:finished'): ## anything
-        b_unit_task.set('unit_task:X state:end type:?type') ## this line ends the unit task
-        print 'green_pepper method finished'
+        b_unit_task.set('unit_task:Y state:end type:?type') ## this line ends the unit task
+        print 'green_pepper Y method finished'
 ## finishing the unit task
-    def Y_finished_ordered(b_unit_task='unit_task:X state:end type:ordered'):
-        print 'finished unit task - ordered'
-        b_unit_task.set('unit_task:X state:finished type:ordered')
+    def Y_finished_ordered(b_unit_task='unit_task:Y state:end type:ordered'):
+        print 'finished unit task Y - ordered'
+        b_unit_task.set('unit_task:Y state:finished type:ordered')
 
-    def Y_finished_unordered(b_unit_task='unit_task:X state:end type:unordered'):
-        print 'finished unit task - unordered'
-        b_unit_task.set('unit_task:X state:finished type:unordered')
+    def Y_finished_unordered(b_unit_task='unit_task:Y state:end type:unordered'):
+        print 'finished unit task Y - unordered'
+        b_unit_task.set('unit_task:Y state:finished type:unordered')
 
 
 
-## cheese unit task
-
-    def cheese_unit_task(b_unit_task='unit_task:cheese state:start type:ordered'):
-        print 'start the cheese unit task'
-        b_unit_task.set('unit_task:cheese state:running')
-        b_method.set('method:add target:feta state:start')    
-    def cheese_unit_task2(b_unit_task='unit_task:cheese state:start type:unordered'):
-        print 'start the cheese unit task'
-        b_unit_task.set('unit_task:cheese state:running')
-        b_method.set('method:add target:feta state:start') 
-    def cheese(b_unit_task='unit_task:cheese state:running',
-               b_method='method:add target:feta state:finished'):
-        print 'cheese method finished'
-        b_unit_task.set('unit_task:cheese state:finished type:ordered')
-
-## pickles unit task
-
-    def pickles_unit_task(b_unit_task='unit_task:pickles state:start type:ordered'):
-        print 'start the pickles unit task'
-        b_unit_task.set('unit_task:pickles state:running')
-        b_method.set('method:add target:green_olives state:start')  
-    def green_olives(b_unit_task='unit_task:pickles state:running',
-                     b_method='method:add target:green_olives state:finished'):
-        print 'green_olives method finished'
-        b_method.set('method:add target:black_olives state:start')       
-    def black_olives(b_unit_task='unit_task:pickles state:running',
-               b_method='method:add target:black_olives state:finished'):
-        print 'black_olives method finished'
-        b_method.set('method:add target:onion state:start')
-    def onion(b_unit_task='unit_task:pickles state:running',
-                 b_method='method:add target:onion state:finished'):
-        print 'onion method finished'
-        b_unit_task.set('unit_task:pickles state:finished type:ordered')
-
-## spreads
-
-    def humus_unit_task(b_unit_task='unit_task:spreads state:start type:ordered'):
-        print 'start the spreads unit task'
-        b_unit_task.set('unit_task:spreads state:running')
-        b_method.set('method:add target:humus state:start')  
-    def humus_end(b_unit_task='unit_task:spreads state:running',
-                    b_method='method:add target:humus state:finished'):
-        print "spreads finished"
-        b_unit_task.set('unit_task:spreads state:finished type:ordered')
-
-## sauce
-
-    def sauce_unit_task(b_unit_task='unit_task:sauce state:start type:ordered'):
-        print 'start the sauce unit task'
-        b_unit_task.set('unit_task:sauce state:running')
-        b_method.set('method:add target:hot_sauce state:start')  
-    def sauce_end(b_unit_task='unit_task:sauce state:running',
-                    b_method='method:add target:hot_sauce state:finished'):
-        print "sauce finished"
-        b_unit_task.set('unit_task:sauce state:finished type:ordered')
-        
-## check_meat
-
-    def check_meat_unit_task(b_unit_task='unit_task:check_meat state:start'):
-        print 'start the check_meat unit task'
-        b_unit_task.set('unit_task:check_meat state:running')
-        b_method.set('method:check target:chicken state:start')       
-    def check_meat(b_unit_task='unit_task:check_meat state:running',
-                   b_method='method:check target:chicken state:finished'):
-        print 'chicken is checked'
-        b_unit_task.set('unit_task:check_meat state:finished')
-
-## add_meat
-
-    def add_meat_unit_task(b_unit_task='unit_task:add_meat state:start'):
-        print 'start the add_meat unit task'
-        b_unit_task.set('unit_task:add_meat state:running')
-        b_method.set('method:add target:chicken state:start')   
-    def add_meat(b_unit_task='unit_task:add_meat state:running',
-                 b_method='method:add target:chicken state:finished'):
-        print 'chicken is added'
-        b_unit_task.set('unit_task:add_meat state:finished')
-        
 
 
 
