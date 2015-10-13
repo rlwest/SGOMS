@@ -183,13 +183,15 @@ class MyAgent(ACTR):
         print 'start unit task X'
 
     ## body of the unit task
-    def cut_the_wires(b_unit_task='unit_task:X state:running type:?type',
+    def cut_the_blue_wire(b_unit_task='unit_task:X state:running type:?type',
                       b_focus='method1'):
         b_method.set('method:cut_wire target:blue_wire state:start')
         b_focus.set('method2')
         print 'method 1 in unit task X done'
 
-    def X2(b_method='state:finished', b_unit_task='unit_task:X state:running type:?type', b_focus='method2'):
+    def cut_the_red_wire(b_method='state:finished',
+           b_unit_task='unit_task:X state:running type:?type',
+           b_focus='method2'):
         b_method.set('method:cut_wire target:red_wire state:start')
         b_focus.set('done')
         b_unit_task.set('unit_task:X state:end type:?type')  ## this line ends the unit task

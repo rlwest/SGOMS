@@ -179,17 +179,19 @@ class MyAgent(ACTR):
     ## the first production in the unit task must begin in this way
     def X_start_unit_task(b_unit_task='unit_task:X state:begin type:?type'):
         b_unit_task.set('unit_task:X state:running type:?type')
-        b_focus.set('method1')
+        b_focus.set('start')
         print 'start unit task X'
 
     ## body of the unit task
-    def cut_the_wires(b_unit_task='unit_task:X state:running type:?type',
-                      b_focus='method1'):
+    def cut_the_blue_wire(b_unit_task='unit_task:X state:running type:?type',
+                          b_focus='start'):
         b_method.set('method:cut_wire target:blue_wire state:start')
-        b_focus.set('method2')
-        print 'method 1 in unit task X done'
+        b_unit_task.set('unit_task:X state:running type:?type')
+        print 'need to cut the blue wire'
 
-    def X2(b_method='state:finished', b_unit_task='unit_task:X state:running type:?type', b_focus='method2'):
+    def cut_the_red_wire(b_method='state:finished',
+           b_unit_task='unit_task:X state:running type:?type',
+           b_focus='wire_is_cut'):
         b_method.set('method:cut_wire target:red_wire state:start')
         b_focus.set('done')
         b_unit_task.set('unit_task:X state:end type:?type')  ## this line ends the unit task
@@ -282,6 +284,7 @@ class MyAgent(ACTR):
                  b_focus='cutting_wire'):
         b_method.set('method:?method target:?target state:finished')
         motor.motor_finst_reset()
+        b_focus.set('wire_is_cut')
         print 'I have cut ', target
 
 
