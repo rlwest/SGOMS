@@ -186,7 +186,7 @@ class MyAgent(ACTR):
     def cut_the_blue_wire(b_unit_task='unit_task:X state:running type:?type',
                           b_focus='start'):
         b_method.set('method:cut_wire target:blue_wire state:start')
-        b_unit_task.set('unit_task:X state:running type:?type')
+        #b_unit_task.set('unit_task:X state:running type:?type')
         print 'need to cut the blue wire'
 
     def cut_the_red_wire(b_method='state:finished',
@@ -206,6 +206,9 @@ class MyAgent(ACTR):
         print 'finished unit task X - unordered'
         b_unit_task.set('unit_task:X state:finished type:unordered')
 
+
+
+
     ## Y unit task
 
     ## these decide if the unit task will be run as part of a sequence of unit tasks 'ordered'
@@ -221,12 +224,19 @@ class MyAgent(ACTR):
     ## the first production in the unit task must begin in this way
     def Y_start_unit_task(b_unit_task='unit_task:Y state:begin type:?type'):
         b_unit_task.set('unit_task:Y state:running type:?type')
-        ## then anything can be added
-        b_method.set('method:add target:tomato state:start')
-        b_focus.set('')
+        b_focus.set('start')
         print 'start unit task Y'
 
     ## body of the unit task
+
+
+    def pull_out_fuse(b_unit_task='unit_task:Y state:running type:?type',
+                      b_focus='start'):
+        b_method.set('method:pull_out_fuse target:fuse state:start')
+        b_unit_task.set('unit_task:Y state:running type:?type')
+        b_focus.set('stop')
+        print 'need to pull out the fuse'
+
     def ytomato(b_unit_task='unit_task:Y state:running type:?type',  ## this line stays the same
                 b_method='method:add target:tomato state:finished'):  ## the rest can be anything
         print 'tomato Y method finished'
@@ -289,6 +299,15 @@ class MyAgent(ACTR):
         print 'I have cut ', target
 
 
+    ## pull out fuse method
+
+    def pull_fuse(b_method='method:pull_fuse target:?target state:start'):  # target is the chunk to be altered
+        motor.cut_wire(target, "exposed")
+        b_method.set('method:cut_wire target:?target state:running')
+        b_operator.set('operator:cut target:?target state:running')
+        b_focus.set('expose_wire')
+        print 'expose wire'
+        print 'target object = ', target
 ############## run model #############
 
 tim = MyAgent()  # name the agent

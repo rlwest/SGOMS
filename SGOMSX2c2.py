@@ -18,29 +18,10 @@ from ccm.lib.actr import *
 # --------------- Environment ------------------
 
 class MyEnvironment(ccm.Model):
-    chicken = ccm.Model(isa='chicken', location='grill', state='cooked', salience=0.2)
-    pita = ccm.Model(isa='pita', location='bins2', status='in_bag', salience=0.2)
 
-    cheese = ccm.Model(isa='cheese', location='in_bins1', salience=0.2)
-    feta = ccm.Model(isa='feta', location='in_bins1', salience=0.2)
-    cucumber = ccm.Model(isa='cucumber', location='in_bins1', salience=0.2)
-    green_pepper = ccm.Model(isa='green_pepper', location='in_bins1', salience=0.2)
-    mushroom = ccm.Model(isa='mushroom', location='in_bins1', salience=0.2)
-    lettuce = ccm.Model(isa='lettuce', location='in_bins1', salience=0.2)
-    tomato = ccm.Model(isa='tomato', location='in_bins1', salience=0.2)
-
-    green_olives = ccm.Model(isa='green_olives', location='in_bins2', salience=0.2)
-    black_olives = ccm.Model(isa='black_olives', location='in_bins2', salience=0.2)
-    hot_peppers = ccm.Model(isa='hot_peppers', location='in_bins2', salience=0.2)
-    onion = ccm.Model(isa='onion', location='in_bins2', salience=0.2)
-
-    humus = ccm.Model(isa='humus', location='in_bins2', salience=0.2)
-    tzatziki = ccm.Model(isa='tzatziki', location='in_bins2', salience=0.2)
-
-    hot_sauce = ccm.Model(isa='hot_sauce', location='in_bins2', salience=0.2)
-
-    worker = ccm.Model(isa='worker', location='at_counter', salience=0.2)
-    spider = ccm.Model(isa='spider', location='on_counter', feature1='yellow_stripe', salience=0.99)
+    red_wire = ccm.Model(isa='wire', state='uncut', color='red', salience=0.99)
+    blue_wire = ccm.Model(isa='wire', state='uncut', color='blue', salience=0.99)
+    green_wire = ccm.Model(isa='wire', state='uncut', color='green', salience=0.99)
 
     motor_finst = ccm.Model(isa='motor_finst', state='re_set')
 
@@ -54,54 +35,27 @@ class MotorModule(ccm.Model):  ### defines actions on the environment
         print env_object
         print slot_value
         self.parent.parent.motor_finst.state = 'finished'
-
+    def cut_wire(self, env_object, slot_value):
+        yield 2
+        x = eval('self.parent.parent.' + env_object)
+        x.state = slot_value
+        print env_object
+        print slot_value
+        self.parent.parent.motor_finst.state = 'finished'
     def motor_finst_reset(self):
         self.parent.parent.motor_finst.state = 're_set'
 
+# --------------- Motor Method Module ------------------
 
 class MethodModule(ccm.ProductionSystem):  # creates an extra production system for the motor system
     production_time = 0.04
 
-
-    # adding method
-
-
-    def do_add(b_method='method:add target:?target state:start'):  # target is the chunk to be altered
-        motor.change_location(target, "in_wrap")
-        b_method.set('method:add target:?target state:running')
-        print 'target=', target
-
-    def done_add(b_method='method:add target:?target state:running',
-                 motor_finst='state:finished'):
-        b_method.set('method:add target:?target state:finished')
-        motor.motor_finst_reset()
-        print 'finished=', target
-
-    # checking method
-
-
-    def do_check(b_method='method:check target:?target state:start'):  # target is the chunk to be checked
-        b_method.set('method:check target:?target state:running')
-        print 'target=', target
-
-    def result1_check(b_method='method:check target:?target state:running',
-                      chicken='state:cooked'):
-        b_method.set('method:check target:?target state:finished')
-        print 'finished=', target
-
-    def result2_check(b_method='method:check target:?target state:running',
-                      chicken='state:raw'):
-        b_method.set('method:check target:?target state:finished')
-        print 'finished=', target
-
-
-# --------------- Vision le ------------------
+# --------------- Vision Module ------------------
 
 class VisionModule(ccm.ProductionSystem):
     production_time = 0.045
 
 
-#
 # --------------- Emotion Module ------------------
 
 class EmotionalModule(ccm.ProductionSystem):
@@ -115,9 +69,8 @@ class MyAgent(ACTR):
     #############################################################
 
     # module buffers
-    b_system = Buffer()  # create system buffers
     b_DM = Buffer()
-    b_motor = Buffer
+    b_motor = Buffer()
     b_visual = Buffer()
     b_image = Buffer()
     b_focus = Buffer()
@@ -163,7 +116,7 @@ class MyAgent(ACTR):
         print 'sequence planning unit is chosen'
 
     def run_situated(
-            b_context='finshed:nothing status:unoccupied'):  # status:unoccupied triggers the selection of a planning unit
+            b_context='finshed:nothing status:occupied'):  # status:unoccupied triggers the selection of a planning unit
         b_plan_unit.set(
             'planning_unit:XY cuelag:none cue:start unit_task:X state:begin_situated')  # state: can be begin_situated or begin_sequence
         b_context.set('finished:nothing status:occupied')  # update context status to occupied
@@ -226,27 +179,35 @@ class MyAgent(ACTR):
     ## the first production in the unit task must begin in this way
     def X_start_unit_task(b_unit_task='unit_task:X state:begin type:?type'):
         b_unit_task.set('unit_task:X state:running type:?type')
-        b_focus.set('method1')
+        b_focus.set('start')
         print 'start unit task X'
 
     ## body of the unit task
-    def X1(b_unit_task='unit_task:X state:running type:?type', b_focus='method1'):
-        b_focus.set('method2')
-        print 'method 1 in unit task X done'
+    def cut_the_blue_wire(b_unit_task='unit_task:X state:running type:?type',
+                          b_focus='start'):
+        b_method.set('method:cut_wire target:blue_wire state:start')
+        #b_unit_task.set('unit_task:X state:running type:?type')
+        print 'need to cut the blue wire'
 
-    def X2(b_unit_task='unit_task:X state:running type:?type', b_focus='method2'):
+    def cut_the_red_wire(b_method='state:finished',
+                         b_unit_task='unit_task:X state:running type:?type',
+                         b_focus='wire_is_cut'):
+        b_method.set('method:cut_wire target:red_wire state:start')
         b_focus.set('done')
         b_unit_task.set('unit_task:X state:end type:?type')  ## this line ends the unit task
         print 'method 2 in unit task X done'
 
     ## finishing the unit task
-    def finished_ordered(b_unit_task='unit_task:X state:end type:ordered'):
+    def finished_ordered(b_method='state:finished', b_unit_task='unit_task:X state:end type:ordered'):
         print 'finished unit task X - ordered'
         b_unit_task.set('unit_task:X state:finished type:ordered')
 
     def finished_unordered(b_unit_task='unit_task:X state:end type:unordered'):
         print 'finished unit task X - unordered'
         b_unit_task.set('unit_task:X state:finished type:unordered')
+
+
+
 
     ## Y unit task
 
@@ -263,26 +224,27 @@ class MyAgent(ACTR):
     ## the first production in the unit task must begin in this way
     def Y_start_unit_task(b_unit_task='unit_task:Y state:begin type:?type'):
         b_unit_task.set('unit_task:Y state:running type:?type')
-        ## then anything can be added
-        b_method.set('method:add target:tomato state:start')
-        b_focus.set('')
+        b_focus.set('start')
         print 'start unit task Y'
 
     ## body of the unit task
-    def ytomato(b_unit_task='unit_task:Y state:running type:?type',  ## this line stays the same
-                b_method='method:add target:tomato state:finished'):  ## the rest can be anything
-        print 'tomato Y method finished'
-        b_method.set('method:add target:cucumber state:start')
 
-    def ycucumber(b_unit_task='unit_task:Y state:running type:?type',  ## same
-                  b_method='method:add target:cucumber state:finished'):  ## anything
-        print 'cucumber Y method finished'
-        b_method.set('method:add target:green_pepper state:start')
+     def xcut_the_blue_wire(b_unit_task='unit_task:Y state:running type:?type',
+                          b_focus='start'):
+        b_method.set('method:cut_wire target:blue_wire state:start')
+        #b_unit_task.set('unit_task:X state:running type:?type')
+        print 'need to cut the blue wire'
 
-    def ygreen_pepper(b_unit_task='unit_task:Y state:running type:?type',  ## same
-                      b_method='method:add target:green_pepper state:finished'):  ## anything
-        b_unit_task.set('unit_task:Y state:end type:?type')  ## this line ends the unit task
-        print 'green_pepper Y method finished'
+    def xcut_the_red_wire(b_method='state:finished',
+                         b_unit_task='unit_task:Y state:running type:?type',
+                         b_focus='wire_is_cut'):
+        b_method.set('method:cut_wire target:red_wire state:start')
+        b_focus.set('done')
+        b_unit_task.set('unit_task:X state:end type:?type')  ## this line ends the unit task
+        print 'method 2 in unit task X done'
+
+
+
 
     ## finishing the unit task
     def Y_finished_ordered(b_unit_task='unit_task:Y state:end type:ordered'):
@@ -292,6 +254,55 @@ class MyAgent(ACTR):
     def Y_finished_unordered(b_unit_task='unit_task:Y state:end type:unordered'):
         print 'finished unit task Y - unordered'
         b_unit_task.set('unit_task:Y state:finished type:unordered')
+
+
+################ methods #######################
+
+## cut wire method
+
+    def expose_wire(b_method='method:cut_wire target:?target state:start'):  # target is the chunk to be altered
+        motor.cut_wire(target, "exposed")
+        b_method.set('method:cut_wire target:?target state:running')
+        b_operator.set('operator:cut target:?target state:running')
+        b_focus.set('expose_wire')
+        print 'expose wire'
+        print 'target object = ', target
+
+    def wire_exposed(b_method='method:?method target:?target state:running',
+                     motor_finst='state:finished',
+                     b_focus='expose_wire'):
+        b_focus.set('cut_wire')
+        motor.motor_finst_reset()
+        print 'I have exposed ', target
+
+    def cut_wire(b_method='method:cut_wire target:?target state:running',
+                 b_focus='cut_wire'):  # target is the chunk to be altered
+        motor.cut_wire(target, "cut")
+        b_method.set('method:cut_wire target:?target state:running')
+        b_operator.set('operator:cut target:?target state:running')
+        b_focus.set('cutting_wire')
+        print 'cut wire'
+        print 'target object = ', target
+
+    def wire_cut(b_method='method:?method target:?target state:running',
+                 motor_finst='state:finished',
+                 b_focus='cutting_wire'):
+        b_method.set('method:?method target:?target state:finished')
+        motor.motor_finst_reset()
+        b_focus.set('wire_is_cut')
+        print 'I have cut ', target
+
+
+    ## pull out fuse method
+
+    def pull_fuse(b_method='method:pull_fuse state:start'):
+        motor.cut_wire(target, "exposed")
+        b_method.set('method:cut_wire target:?target state:running')
+        b_operator.set('operator:cut target:?target state:running')
+        b_focus.set('expose_wire')
+        print 'expose wire'
+        print 'target object = ', target
+
 
 
 ############## run model #############

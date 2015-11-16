@@ -18,90 +18,41 @@ from ccm.lib.actr import *
 # --------------- Environment ------------------
 
 class MyEnvironment(ccm.Model):
-    chicken = ccm.Model(isa='chicken', location='grill', state='cooked', salience=0.2)
-    pita = ccm.Model(isa='pita', location='bins2', status='in_bag', salience=0.2)
 
-    cheese = ccm.Model(isa='cheese', location='in_bins1', salience=0.2)
-    feta = ccm.Model(isa='feta', location='in_bins1', salience=0.2)
-    cucumber = ccm.Model(isa='cucumber', location='in_bins1', salience=0.2)
-    green_pepper = ccm.Model(isa='green_pepper', location='in_bins1', salience=0.2)
-    mushroom = ccm.Model(isa='mushroom', location='in_bins1', salience=0.2)
-    lettuce = ccm.Model(isa='lettuce', location='in_bins1', salience=0.2)
-    tomato = ccm.Model(isa='tomato', location='in_bins1', salience=0.2)
-
-    green_olives = ccm.Model(isa='green_olives', location='in_bins2', salience=0.2)
-    black_olives = ccm.Model(isa='black_olives', location='in_bins2', salience=0.2)
-    hot_peppers = ccm.Model(isa='hot_peppers', location='in_bins2', salience=0.2)
-    onion = ccm.Model(isa='onion', location='in_bins2', salience=0.2)
-
-    humus = ccm.Model(isa='humus', location='in_bins2', salience=0.2)
-    tzatziki = ccm.Model(isa='tzatziki', location='in_bins2', salience=0.2)
-
-    hot_sauce = ccm.Model(isa='hot_sauce', location='in_bins2', salience=0.2)
-
-    worker = ccm.Model(isa='worker', location='at_counter', salience=0.2)
-    spider = ccm.Model(isa='spider', location='on_counter', feature1='yellow_stripe', salience=0.99)
+    red_wire = ccm.Model(isa='wire', state='uncut', color='red', salience=0.99)
+    blue_wire = ccm.Model(isa='wire', state='uncut', color='blue', salience=0.99)
+    green_wire = ccm.Model(isa='wire', state='uncut', color='green', salience=0.99)
 
     motor_finst = ccm.Model(isa='motor_finst', state='re_set')
 
 
 class MotorModule(ccm.Model):  ### defines actions on the environment
 
-    def change_location(self, env_object, slot_value):
+# change_state is a generic action that changes the state slot of any object
+# disadvantages (1) yield time is always the same (2) cannot use for parallel actions
+
+    def change_state(self, env_object, slot_value):
         yield 2
         x = eval('self.parent.parent.' + env_object)
-        x.location = slot_value
+        x.state = slot_value
         print env_object
         print slot_value
         self.parent.parent.motor_finst.state = 'finished'
-
+        
     def motor_finst_reset(self):
         self.parent.parent.motor_finst.state = 're_set'
 
+# --------------- Motor Method Module ------------------
 
 class MethodModule(ccm.ProductionSystem):  # creates an extra production system for the motor system
     production_time = 0.04
 
-
-    # adding method
-
-
-    def do_add(b_method='method:add target:?target state:start'):  # target is the chunk to be altered
-        motor.change_location(target, "in_wrap")
-        b_method.set('method:add target:?target state:running')
-        print 'target=', target
-
-    def done_add(b_method='method:add target:?target state:running',
-                 motor_finst='state:finished'):
-        b_method.set('method:add target:?target state:finished')
-        motor.motor_finst_reset()
-        print 'finished=', target
-
-    # checking method
-
-
-    def do_check(b_method='method:check target:?target state:start'):  # target is the chunk to be checked
-        b_method.set('method:check target:?target state:running')
-        print 'target=', target
-
-    def result1_check(b_method='method:check target:?target state:running',
-                      chicken='state:cooked'):
-        b_method.set('method:check target:?target state:finished')
-        print 'finished=', target
-
-    def result2_check(b_method='method:check target:?target state:running',
-                      chicken='state:raw'):
-        b_method.set('method:check target:?target state:finished')
-        print 'finished=', target
-
-
-# --------------- Vision le ------------------
+# --------------- Vision Module ------------------
 
 class VisionModule(ccm.ProductionSystem):
     production_time = 0.045
 
 
-#
 # --------------- Emotion Module ------------------
 
 class EmotionalModule(ccm.ProductionSystem):
@@ -115,9 +66,8 @@ class MyAgent(ACTR):
     #############################################################
 
     # module buffers
-    b_system = Buffer()  # create system buffers
     b_DM = Buffer()
-    b_motor = Buffer
+    b_motor = Buffer()
     b_visual = Buffer()
     b_image = Buffer()
     b_focus = Buffer()
@@ -155,46 +105,37 @@ class MyAgent(ACTR):
     ## these productions are the highest level of SGOMS and fire off the context buffer
     ## they can take any ACT-R form (one production or more) but must eventually call a planning unit and update the context buffer
 
-    def run_sequence(
-            b_context='finshed:nothing status:unoccupied'):  # status:unoccupied triggers the selection of a planning unit
-        b_plan_unit.set(
-            'planning_unit:XY cuelag:none cue:start unit_task:X state:begin_sequence')  # state: can be begin_situated or begin_sequence
-        b_context.set('finished:nothing status:occupied')  # update context status to occupied
+    def run_sequence(b_context='finshed:nothing status:unoccupied'):# status:unoccupied triggers the selection of a planning unit
+        b_plan_unit.set('planning_unit:XY cuelag:none cue:start unit_task:X state:begin_sequence')# state: can be begin_situated or begin_sequence
+        b_context.set('finished:nothing status:occupied')# update context status to occupied
         print 'sequence planning unit is chosen'
 
-    def run_situated(
-            b_context='finshed:nothing status:unoccupied'):  # status:unoccupied triggers the selection of a planning unit
-        b_plan_unit.set(
-            'planning_unit:XY cuelag:none cue:start unit_task:X state:begin_situated')  # state: can be begin_situated or begin_sequence
-        b_context.set('finished:nothing status:occupied')  # update context status to occupied
+    def run_situated(b_context='finshed:XY status:unoccupied'):  # status:unoccupied triggers the selection of a planning unit
+        b_plan_unit.set('planning_unit:XY cuelag:none cue:start unit_task:X state:begin_situated')  # state: can be begin_situated or begin_sequence
+        b_context.set('finished:XY status:occupied')  # update context status to occupied
         print 'unordered planning unit is chosen'
 
     ########## unit task set up ###########
 
     ## these set up whether it will be an ordered or a situated planning unit
 
-    def setup_situated_planning_unit(
-            b_plan_unit='planning_unit:?planning_unit cuelag:?cuelag cue:?cue unit_task:?unit_task state:begin_situated'):
+    def setup_situated_planning_unit(b_plan_unit='planning_unit:?planning_unit state:begin_situated'):
         b_unit_task.set('state:start type:unordered')
-        b_plan_unit.set(
-            'planning_unit:?planning_unit cuelag:?cuelag cue:?cue unit_task:?unit_task state:running')  # next unit task
+        b_plan_unit.set('planning_unit:?planning_unit state:running')
         print 'begin situated planning unit = ', planning_unit
+        #########################################
 
-    def setup_ordered_planning_unit(
-            b_plan_unit='planning_unit:?planning_unit cuelag:?cuelag cue:?cue unit_task:?unit_task state:begin_sequence'):
+    def setup_ordered_planning_unit(b_plan_unit='planning_unit:?planning_unit cuelag:?cuelag cue:?cue unit_task:?unit_task state:begin_sequence'):
         b_unit_task.set('unit_task:?unit_task state:start type:ordered')
-        b_plan_unit.set(
-            'planning_unit:?planning_unit cuelag:?cuelag cue:?cue unit_task:?unit_task state:running')  # next unit task
+        b_plan_unit.set('planning_unit:?planning_unit cuelag:?cuelag cue:?cue unit_task:?unit_task state:running')
         print 'begin orderdered planning unit = ', planning_unit
 
-    ## these manage the sequence
+    ## these manage the sequence if it is an ordered planning unit
 
-    def request_next_unit_task(
-            b_plan_unit='planning_unit:?planning_unit cuelag:?cuelag cue:?cue unit_task:?unit_task state:running',
-            b_unit_task='unit_task:?unit_task state:finished type:ordered'):
+    def request_next_unit_task(b_plan_unit='planning_unit:?planning_unit cuelag:?cuelag cue:?cue unit_task:?unit_task state:running',
+                               b_unit_task='unit_task:?unit_task state:finished type:ordered'):
         DM.request('planning_unit:?planning_unit cue:?unit_task unit_task:? cuelag:?cue')
-        b_plan_unit.set(
-            'planning_unit:?planning_unit cuelag:?cuelag cue:?cue unit_task:?unit_task state:retrieve')  # next unit task
+        b_plan_unit.set('planning_unit:?planning_unit cuelag:?cuelag cue:?cue unit_task:?unit_task state:retrieve')  # next unit task
         print 'finished unit task = ', unit_task
 
     def retrieve_next_unit_task(b_plan_unit='state:retrieve',
@@ -203,11 +144,14 @@ class MyAgent(ACTR):
         b_unit_task.set('unit_task:?unit_task state:start type:ordered')
         print 'unit_task = ', unit_task
 
-    def last_unit_task(b_plan_unit='planning_unit:?planning_unit',
+    def last_unit_task_ordered(b_plan_unit='planning_unit:?planning_unit',
                        b_unit_task='unit_task:finished state:start type:ordered'):
-        print 'finished planning unit=', planning_unit
+        print 'finished planning unit=',planning_unit
+        print planning_unit
         b_unit_task.set('stop')
-        b_context.set('finished:?planning_unit status:unoccupied')
+        b_context.set('finshed:?planning_unit status:unoccupied')
+
+
 
     ################# unit tasks #################
 
@@ -215,6 +159,7 @@ class MyAgent(ACTR):
 
     ## these decide if the unit task will be run as part of a sequence of unit tasks 'ordered'
     ## OR as situated unit tasks determined by the environment 'unordered'
+        
     def X_unit_task_unordered(b_unit_task='state:start type:unordered'):
         b_unit_task.set('unit_task:X state:begin type:unordered')
         print 'start unit task X unordered'
@@ -226,32 +171,43 @@ class MyAgent(ACTR):
     ## the first production in the unit task must begin in this way
     def X_start_unit_task(b_unit_task='unit_task:X state:begin type:?type'):
         b_unit_task.set('unit_task:X state:running type:?type')
-        b_focus.set('method1')
-        print 'start unit task X'
+        b_focus.set('start')
+        print 'starting unit task X'
 
     ## body of the unit task
-    def X1(b_unit_task='unit_task:X state:running type:?type', b_focus='method1'):
-        b_focus.set('method2')
-        print 'method 1 in unit task X done'
+    def cut_the_blue_wire(b_unit_task='unit_task:X state:running type:?type',
+                          b_focus='start'):
+        b_method.set('method:cut_wire target:blue_wire state:start')
+        b_focus.set('cutting_blue_wire')
+        print 'need to cut the blue wire'
 
-    def X2(b_unit_task='unit_task:X state:running type:?type', b_focus='method2'):
+    def cut_the_red_wire(b_method='state:finished',
+                         b_unit_task='unit_task:X state:running type:?type',
+                         b_focus='wire_is_cut'):
+        b_method.set('method:cut_wire target:red_wire state:start')
         b_focus.set('done')
         b_unit_task.set('unit_task:X state:end type:?type')  ## this line ends the unit task
-        print 'method 2 in unit task X done'
+        print 'need to cut the red wire'
 
     ## finishing the unit task
-    def finished_ordered(b_unit_task='unit_task:X state:end type:ordered'):
+    def finished_ordered(b_method='state:finished',
+                         b_unit_task='unit_task:X state:end type:ordered'):
         print 'finished unit task X - ordered'
         b_unit_task.set('unit_task:X state:finished type:ordered')
 
-    def finished_unordered(b_unit_task='unit_task:X state:end type:unordered'):
+    def finished_unordered(b_method='state:finished',
+                           b_unit_task='unit_task:X state:end type:unordered'):
         print 'finished unit task X - unordered'
-        b_unit_task.set('unit_task:X state:finished type:unordered')
+        b_unit_task.set('unit_task:X state:start type:unordered')
+
+
+
 
     ## Y unit task
 
     ## these decide if the unit task will be run as part of a sequence of unit tasks 'ordered'
     ## OR as situated unit tasks determined by the environment 'unordered'
+        
     def Y_unit_task_unordered(b_unit_task='state:start type:unordered'):
         b_unit_task.set('unit_task:Y state:begin type:unordered')
         print 'start unit task Y unordered'
@@ -263,26 +219,21 @@ class MyAgent(ACTR):
     ## the first production in the unit task must begin in this way
     def Y_start_unit_task(b_unit_task='unit_task:Y state:begin type:?type'):
         b_unit_task.set('unit_task:Y state:running type:?type')
-        ## then anything can be added
-        b_method.set('method:add target:tomato state:start')
-        b_focus.set('')
+        b_focus.set('start')
         print 'start unit task Y'
 
     ## body of the unit task
-    def ytomato(b_unit_task='unit_task:Y state:running type:?type',  ## this line stays the same
-                b_method='method:add target:tomato state:finished'):  ## the rest can be anything
-        print 'tomato Y method finished'
-        b_method.set('method:add target:cucumber state:start')
+    def y_part1(b_unit_task='unit_task:Y state:running type:?type',
+                b_focus='start'):
+        b_focus.set('part_2')
+        print 'pretending to do unit task Y, part 1'
 
-    def ycucumber(b_unit_task='unit_task:Y state:running type:?type',  ## same
-                  b_method='method:add target:cucumber state:finished'):  ## anything
-        print 'cucumber Y method finished'
-        b_method.set('method:add target:green_pepper state:start')
-
-    def ygreen_pepper(b_unit_task='unit_task:Y state:running type:?type',  ## same
-                      b_method='method:add target:green_pepper state:finished'):  ## anything
+    def y_part2(b_unit_task='unit_task:Y state:running type:?type',
+                b_focus='part_2'):
+        b_focus.set('done')
         b_unit_task.set('unit_task:Y state:end type:?type')  ## this line ends the unit task
-        print 'green_pepper Y method finished'
+        print 'pretending to do unit task Y part 2'
+
 
     ## finishing the unit task
     def Y_finished_ordered(b_unit_task='unit_task:Y state:end type:ordered'):
@@ -291,7 +242,48 @@ class MyAgent(ACTR):
 
     def Y_finished_unordered(b_unit_task='unit_task:Y state:end type:unordered'):
         print 'finished unit task Y - unordered'
-        b_unit_task.set('unit_task:Y state:finished type:unordered')
+        b_unit_task.set('unit_task:Y state:start type:unordered')
+
+
+################ methods #######################
+
+## cut wire method
+
+    def expose_wire(b_method='method:cut_wire target:?target state:start'):  # target is the chunk to be altered
+        motor.change_state(target, "exposed")
+        b_method.set('method:cut_wire target:?target state:running')
+        b_operator.set('operator:cut target:?target state:running')
+        b_focus.set('expose_wire')
+        print 'expose wire'
+        print 'target object = ', target
+
+    def wire_exposed(b_method='method:?method target:?target state:running',
+                     motor_finst='state:finished',
+                     b_focus='expose_wire'):
+        b_focus.set('change_state')
+        motor.motor_finst_reset()
+        print 'I have exposed ', target
+
+    def cut_wire(b_method='method:cut_wire target:?target state:running',
+                 b_focus='change_state'):  # target is the chunk to be altered
+        motor.change_state(target, "cut")
+        b_method.set('method:change_state target:?target state:running')
+        b_operator.set('operator:cut target:?target state:running')
+        b_focus.set('cutting_wire')
+        print 'cut wire'
+        print 'target object = ', target
+
+    def wire_cut(b_method='method:?method target:?target state:running',
+                 motor_finst='state:finished',
+                 b_focus='cutting_wire'):
+        b_method.set('method:?method target:?target state:finished')
+        motor.motor_finst_reset()
+        b_focus.set('wire_is_cut')
+        print 'I have cut ', target
+
+
+
+
 
 
 ############## run model #############
