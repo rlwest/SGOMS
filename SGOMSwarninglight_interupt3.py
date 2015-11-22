@@ -7,6 +7,7 @@ sys.path.append('/Users/robertwest/CCMSuite')
 
 
 # this model does an ordered planning unit then an unordered planning unit using the same unit tasks
+# and has a warning light that turns on at random
 
 import ccm
 from random import randrange, uniform
@@ -41,7 +42,7 @@ class MotorModule(ccm.Model):  ### defines actions on the environment
         print env_object
         print slot_value
         irand = randrange(0, 10)
-        if irand < 8:
+        if irand < 8: # trigger warning light
            print '++++++++++++++++++++++++++++++++++++++++++++++++++++'
            print irand
            self.parent.parent.warning_light.state='on' 
@@ -51,10 +52,6 @@ class MotorModule(ccm.Model):  ### defines actions on the environment
     def motor_finst_reset(self):
         self.parent.parent.motor_finst.state = 're_set'
 
-# --------------- Motor Method Module ------------------
-
-class MethodModule(ccm.ProductionSystem):  # creates an extra production system for the motor system
-    production_time = 0.04
 
 # --------------- Vision Module ------------------
 
@@ -66,6 +63,15 @@ class VisionModule(ccm.ProductionSystem):
 
 class EmotionalModule(ccm.ProductionSystem):
     production_time = 0.043
+
+
+    def warning_light(b_emotion='threat:ok',warning_light='state:on'):
+        print "warning light is on!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+        b_emotion.set('threat:high')
+        b_context.set ('warning_light:on')
+        
+ 
+
 
 
 # --------------- Agent ------------------
@@ -97,8 +103,7 @@ class MyAgent(ACTR):
     motor = MotorModule(b_motor)  # put motor production module into the agent
 
     # auxillary production modules
-    Methods = MethodModule(b_method)  # put methods production module into the agent
-    Eproduction = EmotionalModule(b_emotion)  # put the Emotion production module into the agent
+    Emotion = EmotionalModule(b_emotion)  # put the Emotion production module into the agent
     p_vision = VisionModule(b_visual)
 
     ############ add planning units to declarative memory and set context buffer ###############
@@ -107,22 +112,29 @@ class MyAgent(ACTR):
         DM.add('planning_unit:XY         cuelag:none          cue:start          unit_task:X')
         DM.add('planning_unit:XY         cuelag:start         cue:X              unit_task:Y')
         DM.add('planning_unit:XY         cuelag:X             cue:Y              unit_task:finished')
-        b_context.set('finshed:nothing status:unoccupied')
+        b_context.set('finshed:nothing status:unoccupied warning_light:off')
+        b_emotion.set('threat:ok')
+    
 
     ########### create productions for choosing planning units ###########
 
     ## these productions are the highest level of SGOMS and fire off the context buffer
     ## they can take any ACT-R form (one production or more) but must eventually call a planning unit and update the context buffer
 
-    def run_sequence(b_context='finshed:nothing status:unoccupied'):# status:unoccupied triggers the selection of a planning unit
+    def run_sequence(b_context='finshed:nothing status:unoccupied warning_light:off'):# status:unoccupied triggers the selection of a planning unit
         b_plan_unit.set('planning_unit:XY cuelag:none cue:start unit_task:X state:begin_sequence')# state: can be begin_situated or begin_sequence
         b_context.set('finished:nothing status:occupied')# update context status to occupied
         print 'sequence planning unit is chosen'
 
-    def run_situated(b_context='finshed:XY status:unoccupied'):  # status:unoccupied triggers the selection of a planning unit
+    def run_situated(b_context='finshed:XY status:unoccupied warning_light:off'):  # status:unoccupied triggers the selection of a planning unit
         b_plan_unit.set('planning_unit:XY cuelag:none cue:start unit_task:X state:begin_situated')  # state: can be begin_situated or begin_sequence
         b_context.set('finished:XY status:occupied')  # update context status to occupied
         print 'unordered planning unit is chosen'
+
+    def run_away(b_context='finshed:? status:? warning_light:on'):  # status:unoccupied triggers the selection of a planning unit
+        b_plan_unit.set('run')  # state: can be begin_situated or begin_sequence
+        b_context.set('finished:XY status:occupied')  # update context status to occupied
+        print 'run!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'
 
     ########## unit task set up ###########
 

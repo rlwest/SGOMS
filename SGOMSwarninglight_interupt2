@@ -7,6 +7,7 @@ sys.path.append('/Users/robertwest/CCMSuite')
 
 
 # this model does an ordered planning unit then an unordered planning unit using the same unit tasks
+# and has a warning light that turns on at random
 
 import ccm
 from random import randrange, uniform
@@ -41,7 +42,7 @@ class MotorModule(ccm.Model):  ### defines actions on the environment
         print env_object
         print slot_value
         irand = randrange(0, 10)
-        if irand < 8:
+        if irand < 8: # trigger warning light
            print '++++++++++++++++++++++++++++++++++++++++++++++++++++'
            print irand
            self.parent.parent.warning_light.state='on' 
@@ -51,10 +52,6 @@ class MotorModule(ccm.Model):  ### defines actions on the environment
     def motor_finst_reset(self):
         self.parent.parent.motor_finst.state = 're_set'
 
-# --------------- Motor Method Module ------------------
-
-class MethodModule(ccm.ProductionSystem):  # creates an extra production system for the motor system
-    production_time = 0.04
 
 # --------------- Vision Module ------------------
 
@@ -97,8 +94,7 @@ class MyAgent(ACTR):
     motor = MotorModule(b_motor)  # put motor production module into the agent
 
     # auxillary production modules
-    Methods = MethodModule(b_method)  # put methods production module into the agent
-    Eproduction = EmotionalModule(b_emotion)  # put the Emotion production module into the agent
+    Emotion = EmotionalModule(b_emotion)  # put the Emotion production module into the agent
     p_vision = VisionModule(b_visual)
 
     ############ add planning units to declarative memory and set context buffer ###############

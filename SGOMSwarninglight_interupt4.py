@@ -7,6 +7,7 @@ sys.path.append('/Users/robertwest/CCMSuite')
 
 
 # this model does an ordered planning unit then an unordered planning unit using the same unit tasks
+# and has a warning light that turns on at random
 
 import ccm
 from random import randrange, uniform
@@ -41,7 +42,7 @@ class MotorModule(ccm.Model):  ### defines actions on the environment
         print env_object
         print slot_value
         irand = randrange(0, 10)
-        if irand < 8:
+        if irand < 2: # trigger warning light
            print '++++++++++++++++++++++++++++++++++++++++++++++++++++'
            print irand
            self.parent.parent.warning_light.state='on' 
@@ -51,10 +52,6 @@ class MotorModule(ccm.Model):  ### defines actions on the environment
     def motor_finst_reset(self):
         self.parent.parent.motor_finst.state = 're_set'
 
-# --------------- Motor Method Module ------------------
-
-class MethodModule(ccm.ProductionSystem):  # creates an extra production system for the motor system
-    production_time = 0.04
 
 # --------------- Vision Module ------------------
 
@@ -66,6 +63,15 @@ class VisionModule(ccm.ProductionSystem):
 
 class EmotionalModule(ccm.ProductionSystem):
     production_time = 0.043
+
+
+    def warning_light(b_emotion='threat:ok',warning_light='state:on'):
+        print "warning light is on!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+        b_emotion.set('threat:high')
+        b_context.set ('warning_light:on')
+        
+ 
+
 
 
 # --------------- Agent ------------------
@@ -97,8 +103,7 @@ class MyAgent(ACTR):
     motor = MotorModule(b_motor)  # put motor production module into the agent
 
     # auxillary production modules
-    Methods = MethodModule(b_method)  # put methods production module into the agent
-    Eproduction = EmotionalModule(b_emotion)  # put the Emotion production module into the agent
+    Emotion = EmotionalModule(b_emotion)  # put the Emotion production module into the agent
     p_vision = VisionModule(b_visual)
 
     ############ add planning units to declarative memory and set context buffer ###############
@@ -107,7 +112,9 @@ class MyAgent(ACTR):
         DM.add('planning_unit:XY         cuelag:none          cue:start          unit_task:X')
         DM.add('planning_unit:XY         cuelag:start         cue:X              unit_task:Y')
         DM.add('planning_unit:XY         cuelag:X             cue:Y              unit_task:finished')
-        b_context.set('finshed:nothing status:unoccupied')
+        b_context.set('finshed:nothing status:unoccupied warning_light:off')
+        b_emotion.set('threat:ok')
+    
 
     ########### create productions for choosing planning units ###########
 
@@ -123,6 +130,11 @@ class MyAgent(ACTR):
         b_plan_unit.set('planning_unit:XY cuelag:none cue:start unit_task:X state:begin_situated')  # state: can be begin_situated or begin_sequence
         b_context.set('finished:XY status:occupied')  # update context status to occupied
         print 'unordered planning unit is chosen'
+
+#    def run_away(b_context='finshed:? status:? warning_light:on'):  # status:unoccupied triggers the selection of a planning unit
+ #       b_plan_unit.set('run')  # state: can be begin_situated or begin_sequence
+ #       b_context.set('finished:XY status:occupied')  # update context status to occupied
+ #       print 'run!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'
 
     ########## unit task set up ###########
 
@@ -200,14 +212,23 @@ class MyAgent(ACTR):
 
     ## finishing the unit task
     def finished_ordered(b_method='state:finished',
-                         b_unit_task='unit_task:X state:end type:ordered'):
+                         b_unit_task='unit_task:X state:end type:ordered',
+                         b_emotion='threat:ok'):
         print 'finished unit task X - ordered'
         b_unit_task.set('unit_task:X state:finished type:ordered')
 
     def finished_unordered(b_method='state:finished',
-                           b_unit_task='unit_task:X state:end type:unordered'):
+                           b_unit_task='unit_task:X state:end type:unordered',
+                           b_emotion='threat:ok'):
         print 'finished unit task X - unordered'
         b_unit_task.set('unit_task:X state:start type:unordered')
+
+    def interupt_planning_unit(b_method='state:finished',
+                               b_unit_task='unit_task:X state:end type:?type',
+                               b_emotion='threat:high'):
+        print 'finished unit task X - interupting planning unit'
+        b_unit_task.set('unit_task:X state:interupted type:?type')
+
 
 
 
